@@ -1,6 +1,4 @@
-package html;
-
-import java.sql.*;
+package provider;
 
 /**
  * The HtmlProvider class allows for obtaining static HTML mark-up.

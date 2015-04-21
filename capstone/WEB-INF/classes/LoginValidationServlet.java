@@ -1,4 +1,4 @@
-import html.HtmlProvider;
+import provider.*;
 
 import java.io.*;
 
@@ -26,9 +26,9 @@ public class LoginValidationServlet extends HttpServlet {
     if (username.equals("cheese")) {
       htmlStringBuilder.append("<div id=\"body-login\">");
       htmlStringBuilder.append("<p class=\"body-login-header\">Please sign in.</p>");
-      htmlStringBuilder.append("<br>");
+      htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<p id=\"body-login-error\">Incorrect username/password.</p>");
-      htmlStringBuilder.append("<br>");
+      htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
           + "value=\"candidate\" checked>");
@@ -49,22 +49,19 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("</div><br><br>");
       htmlStringBuilder.append("<input id=\"signin-button\" type=\"submit\" value=\"Sign In\">");
       htmlStringBuilder.append("</form><br><br>");
+      htmlStringBuilder
+          .append("<p id=\"body-login-help\"><a id=\"help-link\" href=\"loginhelp.html\">"
+              + "Having trouble logging in? Click here.</a></p><br>");
       htmlStringBuilder.append("<p id=\"signup-link-text2\"><a id=\"signup-link2\" "
           + "href=\"signup.html\">Not registered? Sign up now.</a></p>");
       htmlStringBuilder.append("</div></div>");
     } else {
-      String baseUrl =
-          request.getScheme()
-              + "://"
-              + request.getServerName()
-              + ("http".equals(request.getScheme()) && request.getServerPort() == 80
-                  || "https".equals(request.getScheme()) && request.getServerPort() == 443 ? ""
-                  : ":" + request.getServerPort());
-      
       if (request.getParameter("loginType").equals("candidate")) {
-        response.sendRedirect(baseUrl + "/capstone/CandidateHomeServlet");
+        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+            + "/capstone/CandidateHomeServlet");
       } else {
-        response.sendRedirect(baseUrl + "/capstone/CompanyHomeServlet");
+        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+            + "/capstone/CompanyHomeServlet");
       }
     }
 

@@ -1,4 +1,4 @@
-import html.HtmlProvider;
+import provider.*;
 
 import java.io.*;
 import javax.servlet.*;
@@ -19,12 +19,12 @@ public class LoginServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead());
 
-    if (session.getAttribute("loggedIn")) {
-      String currentUserId = session.getAttribute("currentUserId");
-      
-      if (session.getAttribute("candidateLoggedIn")) {
+    if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) {
+      String currentUserId = (String) session.getAttribute("currentUserId");
+
+      if ((boolean) session.getAttribute("candidateLoggedIn")) {
         // TODO: Load Candidate home screen
-      } else if (session.getAttribute("companyLoggedIn")) {
+      } else if ((boolean) session.getAttribute("companyLoggedIn")) {
         // TODO: Load Company home screen
       }
     } else {
@@ -51,6 +51,9 @@ public class LoginServlet extends HttpServlet {
       htmlStringBuilder.append("</div><br><br>");
       htmlStringBuilder.append("<input id=\"signin-button\" type=\"submit\" value=\"Sign In\">");
       htmlStringBuilder.append("</form><br><br>");
+      htmlStringBuilder
+          .append("<p id=\"body-login-help\"><a id=\"help-link\" href=\"loginhelp.html\">"
+              + "Having trouble logging in? Click here.</a></p><br>");
       htmlStringBuilder.append("<p id=\"signup-link-text2\"><a id=\"signup-link2\" "
           + "href=\"signup.html\">Not registered? Sign up now.</a></p>");
       htmlStringBuilder.append("</div></div>");
