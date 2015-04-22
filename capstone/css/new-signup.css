@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 87em;
+  height: 70em;
 }
 
 #header {
@@ -91,34 +91,99 @@ a:link {
   left: 6.7em;
 }
 
-#body-text {
+#body-signup {
   text-align: center;
   float: left;
   margin-top: -5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
 }
 
-.body-text-header {
+.body-signup-header {
   padding-top: 1em;
   color: black;
   font-family: 'Lato', sans-serif;
   font-size: 2em;
 }
 
-.body-text-text {
+.body-signup-text {
   color: black;
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 1.5em;
-  text-align: center;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  padding-left: 7em;
-  padding-right: 7em;
-  line-height: 1.3em;
+  font-size: 1em;
 }
 
-#icons {
-  margin-left: 1.8em;
+.selection-button {
+  background-color: #145597;
+  border: solid;
+  border-color: white;
+  border-radius: 0.2em;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: white;
+  height: 4.3em;
+  width: 15em;
+}
+
+
+label {
+  line-height: 2em;
+  width: 10em;
+  display: inline-block;
+}
+
+.label-text {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.textbox {
+  margin-left: -1em;
+}
+
+#login-credentials {
+  margin-right: 2em;
+}
+
+#state {
+  width: 17em;
+}
+
+#signin-button {
+  background-color: #145597;
+  border: solid;
+  border-color: white;
+  border-radius: 0.2em;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: white;
+  height: 3em;
+  width: 10em;
+}
+
+#signup-link2:link {
+  color: black;
+  text-decoration: none;
+}
+
+#signup-link2:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+#signup-link-text2 {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
 }
 
 #footer-text {

@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 45em;
+  height: 48em;
 }
 
 #header {
@@ -72,6 +72,11 @@ a:link {
 
 #signup-link:hover {
   color: blue;
+  text-decoration: none;
+}
+
+#signup-link:visited {
+  color: white;
   text-decoration: none;
 }
 

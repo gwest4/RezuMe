@@ -33,16 +33,16 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
           + "value=\"candidate\" checked>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"candidate\">"
-          + "Sign in as Candidate.</label><br>");
+          + "Sign in as Candidate</label><br>");
       htmlStringBuilder.append("<input id=\"company\" type=\"radio\" name=\"loginType\" "
           + "value=\"company\">");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"company\">"
-          + "Sign in as Company.</label>");
+          + "Sign in as Company</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"username\">Email </label>");
       htmlStringBuilder.append("<input id=\"username\" class=\"textbox\" type=\"text\" "
-          + "name=\"username\" size=\"30\"><br>");
+          + "name=\"username\" size=\"30\"><br><br>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"password\">Password </label>");
       htmlStringBuilder.append("<input id=\"password\" class=\"textbox\" type=\"password\" "
           + "name=\"password\" size=\"30\">");

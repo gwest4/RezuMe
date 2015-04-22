@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>RezuMe</title>
 	<link rel="stylesheet" href="css/html5reset.css">
-	<link rel="stylesheet" href="css/error.css">
+	<link rel="stylesheet" href="css/signup-select.css">
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -21,11 +21,17 @@
 			</form>
 		</div>
 
-		<div id="body-text">
-			<p class="body-text-header">Oops! Something went wrong...</p>
-			<p class="body-text-text">Either you do not have permission to access the requested page, or the page you are requesting has not been found.<br><br>
-			Feel free to imagine a picture of a broken robot, inconspicuous lemur, and/or a sad waffle.&nbsp;&nbsp;:(</p>
-			<p id="return-text"><a id="return-link" href="index.html">Click here to return to the home page.</a></p>
+		<div id="body-signup">
+			<p class="body-signup-header">Welcome to RezuMe.<br><br></em></p>
+			<br><br>
+			<form action="CandidateSignupServlet" method="post">
+				<input class="selection-button" type="submit" value="Sign up as Candidate">
+			</form>
+			<br>
+			<br>
+			<form action="CompanySignupHomeServlet" method="post">
+				<input class="selection-button" type="submit" value="Sign up as Company">
+			</form>
 		</div>
 	</div>
 
