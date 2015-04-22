@@ -22,6 +22,10 @@
   version="3.0"
   metadata-complete="true">
 
+  <error-page>
+    <location>/error.html</location>
+  </error-page>
+
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>LoginServlet</servlet-class>

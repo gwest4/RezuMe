@@ -51,7 +51,7 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("</form><br><br>");
       htmlStringBuilder
           .append("<p id=\"body-login-help\"><a id=\"help-link\" href=\"loginhelp.html\">"
-              + "Having trouble logging in? Click here.</a></p><br>");
+              + "Having trouble signing in? Click here.</a></p><br>");
       htmlStringBuilder.append("<p id=\"signup-link-text2\"><a id=\"signup-link2\" "
           + "href=\"signup.html\">Not registered? Sign up now.</a></p>");
       htmlStringBuilder.append("</div></div>");
