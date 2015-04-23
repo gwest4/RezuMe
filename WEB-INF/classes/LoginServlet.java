@@ -24,8 +24,8 @@ public class LoginServlet extends HttpServlet {
 
       if ((boolean) session.getAttribute("candidateLoggedIn")) {
         // TODO: Load Candidate home screen
-      } else if ((boolean) session.getAttribute("companyLoggedIn")) {
-        // TODO: Load Company home screen
+      } else if ((boolean) session.getAttribute("organizationLoggedIn")) {
+        // TODO: Load Organization home screen
       }
     } else {
       htmlStringBuilder.append("<div id=\"body-login\">");
@@ -36,10 +36,10 @@ public class LoginServlet extends HttpServlet {
           + "value=\"candidate\" checked>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"candidate\">"
           + "Sign in as Candidate</label><br>");
-      htmlStringBuilder.append("<input id=\"company\" type=\"radio\" name=\"loginType\" "
-          + "value=\"company\">");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"company\">"
-          + "Sign in as Company</label>");
+      htmlStringBuilder.append("<input id=\"organization\" type=\"radio\" name=\"loginType\" "
+          + "value=\"organization\">");
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"organization\">"
+          + "Sign in as Organization</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"username\">Email </label>");

@@ -34,10 +34,10 @@ public class LoginValidationServlet extends HttpServlet {
           + "value=\"candidate\" checked>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"candidate\">"
           + "Sign in as Candidate</label><br>");
-      htmlStringBuilder.append("<input id=\"company\" type=\"radio\" name=\"loginType\" "
-          + "value=\"company\">");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"company\">"
-          + "Sign in as Company</label>");
+      htmlStringBuilder.append("<input id=\"organization\" type=\"radio\" name=\"loginType\" "
+          + "value=\"organization\">");
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"organization\">"
+          + "Sign in as Organization</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"username\">Email </label>");
@@ -61,7 +61,7 @@ public class LoginValidationServlet extends HttpServlet {
             + "/capstone/CandidateHomeServlet");
       } else {
         response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-            + "/capstone/CompanyHomeServlet");
+            + "/capstone/OrganizationHomeServlet");
       }
     }
 

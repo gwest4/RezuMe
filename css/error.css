@@ -70,11 +70,6 @@ a:link {
   text-decoration: none;
 }
 
-#signup-link:hover {
-  color: blue;
-  text-decoration: none;
-}
-
 #signup-link:visited {
   color: white;
   text-decoration: none;
@@ -117,6 +112,15 @@ a:link {
   line-height: 1.3em;
 }
 
+#return-link:link {
+  color: blue;
+  text-decoration: none;
+}
+
+#return-link:visited {
+  color: blue;
+  text-decoration: none;
+}
 #return-text {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
