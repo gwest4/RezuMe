@@ -42,9 +42,9 @@ public class LoginServlet extends HttpServlet {
           + "Sign in as Organization</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"username\">Email </label>");
-      htmlStringBuilder.append("<input id=\"username\" class=\"textbox\" type=\"text\" "
-          + "name=\"username\" size=\"30\"><br><br>");
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"email\">Email </label>");
+      htmlStringBuilder.append("<input id=\"email\" class=\"textbox\" type=\"text\" "
+          + "name=\"email\" size=\"30\"><br><br>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"password\">Password </label>");
       htmlStringBuilder.append("<input id=\"password\" class=\"textbox\" type=\"password\" "
           + "name=\"password\" size=\"30\">");

@@ -3,8 +3,7 @@ package database;
 import java.sql.*;
 
 /**
- * The DatabaseController class allows for accessing and modifying the ICQ database.
- * The database file will be stored in the following location: C:\capstone-tomcat\bin.
+ * The DatabaseController class allows for accessing and modifying the RezuMe database.
  * 
  * @author Adrian Baran
  */
@@ -21,10 +20,10 @@ public class DatabaseController {
     return instance;
   }
 
-  public void executeSql(String sqlStatement) {
+  public void executeInsertUpdate(String sqlStatement) {
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:icqdb");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
 
       Statement statement = connection.createStatement();
       statement.executeUpdate(sqlStatement);
@@ -35,5 +34,53 @@ public class DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       return;
     }
+  }
+
+  public String getCandidatePassword(String email) {
+    String password = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+
+      Statement statement = connection.createStatement();
+      password =
+          statement
+              .executeQuery("SELECT password FROM rzm_candidate WHERE email='" + email + "';")
+              .getObject(1).toString();
+
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      return null;
+    }
+    
+    return password;
+  }
+  
+  public String getOrganizationPassword(String email) {
+    String password = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+
+      Statement statement = connection.createStatement();
+      password =
+          statement
+              .executeQuery("SELECT password FROM rzm_organization WHERE email='" + email + "';")
+              .getObject(1).toString();
+
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      return null;
+    }
+    
+    return password;
   }
 }

@@ -1,3 +1,5 @@
+import database.*;
+
 import provider.*;
 
 import java.io.*;
@@ -20,14 +22,24 @@ public class LoginValidationServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead());
 
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
+    String inputEmail = request.getParameter("email");
+    String inputPassword = request.getParameter("password");
 
-    if (username.equals("cheese")) {
+    boolean isAuthenticated = false;
+
+    if (request.getParameter("loginType").equals("candidate")) {
+      isAuthenticated =
+          PasswordHasher.getInstance().isAuthenticated(inputEmail, inputPassword, "CANDIDATE");
+    } else {
+      isAuthenticated =
+          PasswordHasher.getInstance().isAuthenticated(inputEmail, inputPassword, "ORGANIZATION");
+    }
+
+    if (!isAuthenticated) {
       htmlStringBuilder.append("<div id=\"body-login\">");
       htmlStringBuilder.append("<p class=\"body-login-header\">Please sign in.</p>");
       htmlStringBuilder.append("<br><br>");
-      htmlStringBuilder.append("<p id=\"body-login-error\">Incorrect username/password.</p>");
+      htmlStringBuilder.append("<p id=\"body-login-error\">Incorrect email/password.</p>");
       htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
@@ -40,9 +52,9 @@ public class LoginValidationServlet extends HttpServlet {
           + "Sign in as Organization</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"username\">Email </label>");
-      htmlStringBuilder.append("<input id=\"username\" class=\"textbox\" type=\"text\" "
-          + "name=\"username\" size=\"30\"><br><br>");
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"email\">Email </label>");
+      htmlStringBuilder.append("<input id=\"email\" class=\"textbox\" type=\"text\" "
+          + "name=\"email\" size=\"30\"><br><br>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"password\">Password </label>");
       htmlStringBuilder.append("<input id=\"password\" class=\"textbox\" type=\"password\" "
           + "name=\"password\" size=\"30\">");
