@@ -7,11 +7,10 @@ package provider;
  */
 public class HtmlProvider {
   private static HtmlProvider instance;
-  private static String htmlHeadString = "<!doctype html>\r\n<html>\r\n<head>\r\n\t"
+  private static String htmlHeadString1 = "<!doctype html>\r\n<html>\r\n<head>\r\n\t"
       + "<meta charset=\"utf-8\">\r\n\t<title>RezuMe - Sign In</title>\r\n\t"
-      + "<link rel=\"stylesheet\" href=\"css/html5reset.css\">\r\n\t"
-      + "<link rel=\"stylesheet\" href=\"css/login.css\">\r\n\t"
-      + "<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' "
+      + "<link rel=\"stylesheet\" href=\"css/html5reset.css\">\r\n\t";
+  private static String htmlHeadString2 = "<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' "
       + "type='text/css'>\r\n</head>\r\n<body>\r\n\t<div id=\"container\">\r\n\t\t"
       + "<div id=\"header\">\r\n\t\t\t<img src=\"images/chicago-header.jpg\" alt=\"\">\r\n\t\t\t"
       + "<div id=\"header-logo\">\r\n\t\t\t\t<a href=\"index.html\"><h1 id=\"header-logo-text\">"
@@ -34,7 +33,9 @@ public class HtmlProvider {
     return instance;
   }
 
-  public String getHtmlHead() {
+  public String getHtmlHead(String cssFile) {
+    String htmlHeadString = htmlHeadString1 + "<link rel=\"stylesheet\" href=\"css/" + cssFile + "\">\r\n\t"
+        + htmlHeadString2;
     return htmlHeadString;
   }
 

@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead());
+    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("login.css"));
 
     if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) {
       String currentUserId = (String) session.getAttribute("currentUserId");

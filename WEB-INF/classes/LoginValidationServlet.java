@@ -20,7 +20,7 @@ public class LoginValidationServlet extends HttpServlet {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead());
+    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("login.css"));
 
     String inputEmail = request.getParameter("email");
     String inputPassword = request.getParameter("password");
