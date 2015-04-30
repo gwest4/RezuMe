@@ -39,7 +39,7 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<div id=\"body-login\">");
       htmlStringBuilder.append("<p class=\"body-login-header\">Please sign in.</p>");
       htmlStringBuilder.append("<br><br>");
-      htmlStringBuilder.append("<p id=\"body-login-error\">Invalid email/password.</p>");
+      htmlStringBuilder.append("<p id=\"body-login-error\">Oops! Invalid email/password...</p>");
       htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
