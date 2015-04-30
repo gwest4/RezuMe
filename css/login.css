@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 53em;
+  height: 51em;
 }
 
 #header {
@@ -135,14 +135,6 @@ label {
   font-family: 'Lato', sans-serif;
   font-size: 1em;
   font-weight: 400;
-}
-
-.textbox {
-  margin-left: -2em;
-}
-
-#login-credentials {
-  margin-left: -4.5em;
 }
 
 #signin-button {
