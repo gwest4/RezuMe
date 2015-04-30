@@ -19,9 +19,10 @@ public class HtmlProvider {
       + "<input id=\"login-button\" type=\"submit\" value=\"My Account\">\r\n\t\t\t\t"
       + "<p id=\"signup-link-text\"><a id=\"signup-link\" href=\"signup.html\">"
       + "Not registered? Sign up now.</a></p>\r\n\t\t\t</form>\r\n\t\t</div>";
-  private static String htmlTailString = "\t<p id=\"footer-text\">"
+  private static String htmlTailString = "\n\t<footer><p id=\"footer-text\">"
       + "DePaul University - Spring 2015 - Software Projects &copy; 2015 Team 2</p>\r\n"
-      + "</body>\r\n</html>";
+      + "<center><img src=\"images/dpu-logo.png\" alt=\"\"></center>\r\n"
+      + "</footer></body>\r\n</html>";
 
   private HtmlProvider() {}
 
