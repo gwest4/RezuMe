@@ -24,7 +24,7 @@ public class DatabaseController {
   public void executeInsertUpdate(String sqlStatement) {
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       statement.executeUpdate(sqlStatement);
@@ -42,7 +42,7 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       password =
@@ -65,7 +65,7 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       password =
@@ -89,7 +89,7 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:rezume_db1.db");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
       connection.setAutoCommit(false);
 
       Statement statement = connection.createStatement();
