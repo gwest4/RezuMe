@@ -24,7 +24,7 @@ public class CandidateSignupServlet extends HttpServlet {
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("new-signup.css"));
     
     htmlStringBuilder.append("<div id=\"body-signup\">");
-    htmlStringBuilder.append("<p class=\"body-signup-header\">New Candidate registration.<br><br></em></p>");
+    htmlStringBuilder.append("<p class=\"body-signup-header\">New Candidate Registration<br><br></em></p>");
     htmlStringBuilder.append("<p class=\"body-signup-text\">* denotes a mandatory field.</p><br><br>");
     htmlStringBuilder.append("<form action=\"CandidateHomeServlet\" method=\"post\">");
     htmlStringBuilder.append("<div id=\"login-credentials\">");

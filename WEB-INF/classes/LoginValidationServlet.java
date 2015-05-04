@@ -37,7 +37,7 @@ public class LoginValidationServlet extends HttpServlet {
 
     if (!isAuthenticated) {
       htmlStringBuilder.append("<div id=\"body-login\">");
-      htmlStringBuilder.append("<p class=\"body-login-header\">Please sign in.</p>");
+      htmlStringBuilder.append("<p class=\"body-login-header\">Please Sign In</p>");
       htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<p id=\"body-login-error\">Oops! Invalid email/password...</p>");
       htmlStringBuilder.append("<br><br>");

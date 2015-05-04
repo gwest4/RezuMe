@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
       }
     } else {
       htmlStringBuilder.append("<div id=\"body-login\">");
-      htmlStringBuilder.append("<p class=\"body-login-header\">Please sign in.</p>");
+      htmlStringBuilder.append("<p class=\"body-login-header\">Please Sign In</p>");
       htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
