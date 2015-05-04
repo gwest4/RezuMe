@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 89em;
+  height: 87em;
 }
 
 #header {
@@ -116,11 +116,18 @@ a:link {
   margin-left: 1.8em;
 }
 
+footer {
+  background-color: #33292E;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+}
+
 #footer-text {
   color: white;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1em;
   text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
