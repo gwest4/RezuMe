@@ -28,8 +28,19 @@ public class UploadFileServlet.java extends HttpServley {
       PrintWriter out = response.getWriter();
       StringBuilder htmlStringBuilder = new Stringbuilder(HtmlProvider.getInstance().getHtmlhead( CSS_FILE_NAME));
       if(session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) {
-         
-      }
+	String currentUserId = (String) session.getAttribute("currentUserId");
+        /*
+         * TODO: Check if the user has a resume uploaded already
+         *       if they do, validate whether or not they want to replace it
+         *       else go straight to allowing upload
+         */
 
-  }
+
+      } else {
+         htmlStringBuilder.append("hello world");
+
+         htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
+         out.println(htmlStringBuilder.toString());
+         out.close();
+      }
 } 
