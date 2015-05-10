@@ -26,6 +26,7 @@
     <location>/error.html</location>
   </error-page>
 
+  <!-- LoginServlet -->
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>LoginServlet</servlet-class>
@@ -36,6 +37,7 @@
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- LoginValidationServlet -->
   <servlet>
     <servlet-name>LoginValidationServlet</servlet-name>
     <servlet-class>LoginValidationServlet</servlet-class>
@@ -46,6 +48,7 @@
     <url-pattern>/LoginValidationServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- CandidateSignupServlet -->
   <servlet>
     <servlet-name>CandidateSignupServlet</servlet-name>
     <servlet-class>CandidateSignupServlet</servlet-class>
@@ -56,6 +59,7 @@
     <url-pattern>/CandidateSignupServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- CandidateSignup2Servlet -->
   <servlet>
     <servlet-name>CandidateSignup2Servlet</servlet-name>
     <servlet-class>CandidateSignup2Servlet</servlet-class>
@@ -64,6 +68,17 @@
   <servlet-mapping>
     <servlet-name>CandidateSignup2Servlet</servlet-name>
     <url-pattern>/CandidateSignup2Servlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- OrganizationSignupServlet -->
+  <servlet>
+    <servlet-name>OrganizationSignupServlet</servlet-name>
+    <servlet-class>OrganizationSignupServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationSignupServlet</servlet-name>
+    <url-pattern>/OrganizationSignupServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

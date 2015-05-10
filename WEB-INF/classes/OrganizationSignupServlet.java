@@ -9,11 +9,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 /**
- * CandidateSignupServlet.
+ * OrganizationSignupServlet.
  * 
  * @author Adrian Baran
  */
-public class CandidateSignupServlet extends HttpServlet {
+public class OrganizationSignupServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -24,16 +24,16 @@ public class CandidateSignupServlet extends HttpServlet {
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("new-signup.css"));
     
     htmlStringBuilder.append("<div id=\"body-signup\">");
-    htmlStringBuilder.append("<p class=\"body-signup-header\">New Candidate Registration<br><br></em></p>");
+    htmlStringBuilder.append("<p class=\"body-signup-header\">New Organization Registration<br><br></em></p>");
     htmlStringBuilder.append("<p class=\"body-signup-text\">* denotes a mandatory field.</p><br><br>");
-    htmlStringBuilder.append("<form action=\"CandidateSignup2Servlet\" method=\"post\">");
+    htmlStringBuilder.append("<form action=\"OrganizationSignup2Servlet\" method=\"post\">");
     htmlStringBuilder.append("<div id=\"login-credentials\">");
-    // First name
-    htmlStringBuilder.append("<label class=\"label-text\" for=\"firstname\">First name *</label>");
-    htmlStringBuilder.append("<input id=\"firstname\" class=\"textbox\" type=\"text\" name=\"firstname\" size=\"30\" required><br><br>");
-    // Last name
-    htmlStringBuilder.append("<label class=\"label-text\" for=\"lastname\">Last name *</label>");
-    htmlStringBuilder.append("<input id=\"lastname\" class=\"textbox\" type=\"text\" name=\"lastname\" size=\"30\" required><br><br>");
+    // Name
+    htmlStringBuilder.append("<label class=\"label-text\" for=\"name\">Name *</label>");
+    htmlStringBuilder.append("<input id=\"name\" class=\"textbox\" type=\"text\" name=\"name\" size=\"30\" required><br><br>");
+    // EIN
+    htmlStringBuilder.append("<label class=\"label-text\" for=\"ein\">EIN *</label>");
+    htmlStringBuilder.append("<input id=\"ein\" class=\"textbox\" type=\"text\" name=\"ein\" size=\"30\" required><br><br>");
     // Email
     htmlStringBuilder.append("<label class=\"label-text\" for=\"email\">Email *</label>");
     htmlStringBuilder.append("<input id=\"email\" class=\"textbox\" type=\"email\" name=\"email\" size=\"30\" required><br><br>");
@@ -76,16 +76,7 @@ public class CandidateSignupServlet extends HttpServlet {
     // Zip code
     htmlStringBuilder.append("<label class=\"label-text\" for=\"zip\">Zip Code *</label>");
     htmlStringBuilder.append("<input id=\"zip\" class=\"textbox\" type=\"text\" name=\"zip\" size=\"30\" required><br><br>");
-    // Industry
-    htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
-    htmlStringBuilder.append("<select id=\"industry\" name=\"industry\" required>");
-    ArrayList<String> industries = DatabaseController.getInstance().getIndustries();
-    
-    for (String industry : industries) {
-      htmlStringBuilder.append("<option value=\"" + industry + "\">" + industry + "</option>\r\n");
-    }
-    
-    htmlStringBuilder.append("</select><br><br><br>");
+    htmlStringBuilder.append("<br><br><br>");
     htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">");
     htmlStringBuilder.append("</div></form></div></div>");
 
