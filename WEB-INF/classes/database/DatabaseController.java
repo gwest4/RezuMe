@@ -2,6 +2,7 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The DatabaseController class allows for accessing and modifying the RezuMe database.
@@ -153,4 +154,37 @@ public class DatabaseController {
 
     return emailExists;
   }
+
+  public HashMap<String, String> getIndustrySkills(String industryName) {
+    HashMap<String, String> skills = new HashMap<String, String>();
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+
+      String industryId = statement
+          .executeQuery("SELECT industry_id FROM rzm_industry WHERE name = '" + industryName + "';")
+          .getObject(1).toString();
+
+      ResultSet resultSet = statement.executeQuery("SELECT skill_id, name FROM rzm_skill WHERE industry_id = '"
+          + industryId + "' ORDER BY name;");
+
+      while (resultSet.next()) {
+        skills.put(resultSet.getString("skill_id"), resultSet.getString("name"));
+      }
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return skills;
+  }  
 }

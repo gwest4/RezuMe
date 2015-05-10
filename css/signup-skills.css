@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 70em;
+  height: 74em;
 }
 
 #header {
@@ -116,8 +116,9 @@ a:link {
   border-width: 2px;
   background-color: white;
   margin-left: 8em;
-  height: 25em;
-  width: 20em;
+  height: 30em;
+  width: 22em;
+  overflow-y: scroll;
 }
 
 #selected-skills {
@@ -127,8 +128,70 @@ a:link {
   border-width: 2px;
   background-color: white;
   margin-right: 8em;
-  height: 25em;
-  width: 20em;
+  height: 30em;
+  width: 22em;
+  overflow-y: scroll;
+}
+
+#features {
+  margin: auto;
+  width: 460px;
+  font-size: 0.9em;
+}
+    
+.connected, .sortable, .exclude, .handles {
+  margin: auto;
+  padding: 0;
+  width: 310px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sortable.grid {
+  overflow: hidden;
+}
+
+.connected li, .sortable li, .exclude li, .handles li {
+  list-style: none;
+  border: 1px solid #CCC;
+  background: #F6F6F6;
+  font-family: 'Lato', sans-serif;
+  color: #1C94C4;
+  margin: 5px;
+  padding: 5px;
+  height: 22px;
+}
+
+.handles span {
+  cursor: move;
+}
+
+.sortable.grid li {
+  line-height: 80px;
+  float: left;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+}
+    
+li.disabled {
+  color: black;
+  opacity: 0.5;
+}
+
+#connected {
+  width: 440px;
+  overflow: hidden;
+  margin: auto;
+}
+
+li.sortable-placeholder {
+  border: 1px dashed #CCC;
+  background: none;
 }
 
 .box-header-text {
@@ -154,7 +217,7 @@ a:link {
   color: white;
   height: 3em;
   width: 10em;
-  margin-top: 35em;
+  margin-top: 4em;
 }
 
 footer {

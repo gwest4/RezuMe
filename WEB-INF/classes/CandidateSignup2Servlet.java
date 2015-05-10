@@ -4,6 +4,7 @@ import provider.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -67,6 +68,9 @@ public class CandidateSignup2Servlet extends HttpServlet {
       // Password verification
       htmlStringBuilder.append("<label class=\"label-text\" for=\"password2\">Verify Password *</label>");
       htmlStringBuilder.append("<input id=\"password2\" class=\"textbox\" type=\"password\" name=\"password2\" size=\"30\" value=\"" + request.getParameter("password2") + "\" required><br><br>");
+      // Phone
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"phone\">Phone *</label>");
+      htmlStringBuilder.append("<input id=\"phone\" class=\"textbox\" type=\"text\" name=\"phone\" size=\"30\" required><br><br>");
       // Street address
       htmlStringBuilder.append("<label class=\"label-text\" for=\"streetaddress\">Street Address *</label>");
       htmlStringBuilder.append("<input id=\"streetaddress\" class=\"textbox\" type=\"text\" name=\"streetaddress\" size=\"30\" value=\"" + request.getParameter("streetaddress") + "\" required><br><br>");
@@ -110,9 +114,30 @@ public class CandidateSignup2Servlet extends HttpServlet {
       htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">");
       htmlStringBuilder.append("</div></form></div></div>");
     } else {
-      htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlHead("signup-skills.css"));
+      htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
-      htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t<p class=\"body-skills-text\">Now it's time for you to rank your skills based on your selected industry.</p>\r\n\t\t\t<br>\r\n\t\t\t<p class=\"body-skills-text\">Use the left pane to drag and drop your desired skills to the right pane in your order of strength.</p>\r\n\t\t\t<br><br><br><br>\r\n\t\t\t<div id=\"available-skills\">\r\n\t\t\t\t<p class=\"box-header-text\">Available Skills</p>\r\n\t\t\t</div>\r\n\t\t\t<div id=\"selected-skills\">\r\n\t\t\t\t<p class=\"box-header-text\">Selected Skills</p>\r\n\t\t\t</div>\r\n\t\t\t<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
+      htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");
+      htmlStringBuilder.append("<p class=\"body-skills-text\">Now it's time for you to rank your skills based on your selected industry.</p>\r\n\t\t\t<br>");
+      htmlStringBuilder.append("\r\n\t\t\t<p class=\"body-skills-text\">Use the left pane to drag and drop your desired skills to the right pane in your order of strength.</p>");
+      htmlStringBuilder.append("\r\n\t\t\t<br><br><br><br>\r\n\t\t\t");
+      htmlStringBuilder.append("<div id=\"available-skills\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<p class=\"box-header-text\">Available Skills</p>\r\n\t\t\t");
+      htmlStringBuilder.append("<ul id=\"availableskills\" class=\"connected sortable list\">");
+
+      HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(request.getParameter("industry"));
+      
+      for (String skillsKey : skills.keySet()) {
+        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
+      }
+
+      htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
+      htmlStringBuilder.append("<div id=\"selected-skills\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<p class=\"box-header-text\">Selected Skills</p>\r\n\t\t\t");
+      htmlStringBuilder.append("<ul id=\"selectedskills\" class=\"connected sortable list\">");
+      htmlStringBuilder.append("<li class=\"disabled\">Place your skills below.</li>");
+      htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
+      htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     }
     
     htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
