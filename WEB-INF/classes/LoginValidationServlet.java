@@ -52,12 +52,10 @@ public class LoginValidationServlet extends HttpServlet {
           + "Sign in as Organization</label>");
       htmlStringBuilder.append("<br><br><br>");
       htmlStringBuilder.append("<div id=\"login-credentials\">");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"email\">Email </label>");
       htmlStringBuilder.append("<input id=\"email\" class=\"textbox\" type=\"text\" "
-          + "name=\"email\" size=\"30\"><br><br>");
-      htmlStringBuilder.append("<label class=\"label-text\" for=\"password\">Password </label>");
+          + "name=\"email\" placeholder=\"Email\" size=\"30\" required><br><br>");
       htmlStringBuilder.append("<input id=\"password\" class=\"textbox\" type=\"password\" "
-          + "name=\"password\" size=\"30\">");
+          + "name=\"password\" placeholder=\"Password\" size=\"30\" required>");
       htmlStringBuilder.append("</div><br><br>");
       htmlStringBuilder.append("<input id=\"signin-button\" type=\"submit\" value=\"Sign In\">");
       htmlStringBuilder.append("</form><br><br>");
@@ -70,10 +68,10 @@ public class LoginValidationServlet extends HttpServlet {
     } else {
       if (request.getParameter("loginType").equals("candidate")) {
         response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-            + "/capstone/CandidateHomeServlet");
+            + "/RezuMe/CandidateHomeServlet");
       } else {
         response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-            + "/capstone/OrganizationHomeServlet");
+            + "/RezuMe/OrganizationHomeServlet");
       }
     }
 

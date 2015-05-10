@@ -24,7 +24,8 @@ public class DatabaseController {
   public void executeInsertUpdate(String sqlStatement) {
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       statement.executeUpdate(sqlStatement);
@@ -42,7 +43,8 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       password =
@@ -65,7 +67,8 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
 
       Statement statement = connection.createStatement();
       password =
@@ -89,7 +92,8 @@ public class DatabaseController {
 
     try {
       Class.forName("org.sqlite.JDBC");
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
       connection.setAutoCommit(false);
 
       Statement statement = connection.createStatement();
@@ -108,5 +112,45 @@ public class DatabaseController {
     }
 
     return industries;
+  }
+
+  public boolean emailRegistered(String email, String userType) {
+    boolean emailExists = true;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      String result = null;
+
+      if (userType.equals("CANDIDATE")) {
+        result =
+            statement
+                .executeQuery("SELECT count(*) FROM rzm_candidate WHERE email = '" + email + "';")
+                .getObject(1).toString();
+      } else if (userType.equals("ORGANIZATION")) {
+        result =
+            statement
+                .executeQuery(
+                    "SELECT count(*) FROM rzm_organization WHERE email = '" + email + "';")
+                .getObject(1).toString();
+      }
+
+      if (result.equals("0")) {
+        emailExists = false;
+      }
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return true;
+    }
+
+    return emailExists;
   }
 }

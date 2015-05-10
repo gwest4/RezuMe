@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 49em;
+  height: 70em;
 }
 
 #header {
@@ -86,50 +86,75 @@ a:link {
   left: 6.7em;
 }
 
-#body-text {
+#body-skills {
   text-align: center;
   float: left;
   margin-top: -5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
 }
 
-.body-text-header {
+.body-skills-header {
   padding-top: 1em;
   color: black;
   font-family: 'Lato', sans-serif;
   font-size: 2em;
 }
 
-.body-text-text {
+.body-skills-text {
   color: black;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 1.5em;
-  text-align: center;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  padding-left: 7em;
-  padding-right: 7em;
-  line-height: 1.3em;
 }
 
-#return-link:link {
-  color: blue;
-  text-decoration: none;
+#available-skills {
+  float: left;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  background-color: white;
+  margin-left: 8em;
+  height: 25em;
+  width: 20em;
 }
 
-#return-link:visited {
-  color: blue;
-  text-decoration: none;
+#selected-skills {
+  float: right;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  background-color: white;
+  margin-right: 8em;
+  height: 25em;
+  width: 20em;
 }
-#return-text {
+
+.box-header-text {
+  background-color: #E6E6E6;
+  color: black;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 1.3em;
-  text-align: center;
+  font-size: 1.2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
-#icons {
-  margin-left: 1.8em;
+#submit-button {
+  background-color: #145597;
+  border: solid;
+  border-color: black;
+  border-radius: 0.2em;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: white;
+  height: 3em;
+  width: 10em;
+  margin-top: 35em;
 }
 
 footer {

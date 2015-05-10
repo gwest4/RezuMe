@@ -55,5 +55,15 @@
     <servlet-name>CandidateSignupServlet</servlet-name>
     <url-pattern>/CandidateSignupServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CandidateSignup2Servlet</servlet-name>
+    <servlet-class>CandidateSignup2Servlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+    <servlet-name>CandidateSignup2Servlet</servlet-name>
+    <url-pattern>/CandidateSignup2Servlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
