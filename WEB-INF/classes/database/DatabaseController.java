@@ -155,6 +155,31 @@ public class DatabaseController {
     return emailExists;
   }
 
+  public String getIndustryId(String industryName) {
+    String industryId = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      industryId = statement
+          .executeQuery("SELECT industry_id FROM rzm_industry WHERE name = '" + industryName + "';")
+          .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return industryId;
+  }
+
   public HashMap<String, String> getIndustrySkills(String industryName) {
     HashMap<String, String> skills = new HashMap<String, String>();
 
@@ -166,9 +191,7 @@ public class DatabaseController {
 
       Statement statement = connection.createStatement();
 
-      String industryId = statement
-          .executeQuery("SELECT industry_id FROM rzm_industry WHERE name = '" + industryName + "';")
-          .getObject(1).toString();
+      String industryId = getIndustryId(industryName);
 
       ResultSet resultSet = statement.executeQuery("SELECT skill_id, name FROM rzm_skill WHERE industry_id = '"
           + industryId + "' ORDER BY name;");
@@ -186,5 +209,15 @@ public class DatabaseController {
     }
 
     return skills;
-  }  
+  }
+
+  public void addNewCandidate(String firstName, String lastName, String email, String password, 
+      String phone, String address, String city, String state, String zip, String school,
+      String industry) {
+    executeInsertUpdate("INSERT INTO rzm_candidate (firstname, lastname, email, password,"
+      + "phone, address, city, state, zip, school, industry_id) VALUES ('"
+      + firstName + "', '" + lastName + "', '" + email + "', '" + password + "', '"
+      + phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "', '"
+      + school + "', '" + getIndustryId(industry) + "');");
+  }
 }

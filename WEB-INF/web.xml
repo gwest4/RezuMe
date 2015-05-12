@@ -70,6 +70,17 @@
     <url-pattern>/CandidateSignup2Servlet</url-pattern>
   </servlet-mapping>
 
+  <!-- CandidateWapServlet -->
+  <servlet>
+    <servlet-name>CandidateWapServlet</servlet-name>
+    <servlet-class>CandidateWapServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CandidateWapServlet</servlet-name>
+    <url-pattern>/CandidateWapServlet</url-pattern>
+  </servlet-mapping>
+
   <!-- OrganizationSignupServlet -->
   <servlet>
     <servlet-name>OrganizationSignupServlet</servlet-name>

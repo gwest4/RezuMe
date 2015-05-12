@@ -1,4 +1,4 @@
-import database.DatabaseController;
+import database.*;
 
 import provider.*;
 
@@ -38,7 +38,7 @@ public class CandidateSignup2Servlet extends HttpServlet {
     
     if (DatabaseController.getInstance().emailRegistered(inputEmail, "CANDIDATE")) {
       isValid = false;
-      errorMessage = "The email that you have provided appears to have already been registered.<br>"
+      errorMessage = "The email that you have provided appears to have already been registered.<br><br>"
           + "If you think this is a mistake, please submit a ticket to us.";
     }
 
@@ -101,6 +101,9 @@ public class CandidateSignup2Servlet extends HttpServlet {
       // Zip code
       htmlStringBuilder.append("<label class=\"label-text\" for=\"zip\">Zip Code *</label>");
       htmlStringBuilder.append("<input id=\"zip\" class=\"textbox\" type=\"text\" name=\"zip\" size=\"30\" value=\"" + request.getParameter("zip") + "\" required><br><br>");
+      // School
+      htmlStringBuilder.append("<label class=\"label-text\" for=\"school\">School *</label>");
+      htmlStringBuilder.append("<input id=\"school\" class=\"textbox\" type=\"text\" name=\"school\" size=\"30\" required><br><br>");
       // Industry
       htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
       htmlStringBuilder.append("<select id=\"industry\" name=\"industry\" required>");
@@ -114,6 +117,21 @@ public class CandidateSignup2Servlet extends HttpServlet {
       htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">");
       htmlStringBuilder.append("</div></form></div></div>");
     } else {
+      String firstName = request.getParameter("firstname");
+      String lastName = request.getParameter("lastname");
+      String email = request.getParameter("email");
+      String password = PasswordHasher.getInstance().generateHash(request.getParameter("password"));
+      String phone = request.getParameter("phone");
+      String address = request.getParameter("streetaddress");
+      String city = request.getParameter("city");
+      String state = request.getParameter("state");
+      String zip = request.getParameter("zip");
+      String school = request.getParameter("school");
+      String industry = request.getParameter("industry");
+
+      DatabaseController.getInstance().addNewCandidate(firstName, lastName, email, password, phone, address,
+          city, state, zip, school, industry);
+
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
       htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");

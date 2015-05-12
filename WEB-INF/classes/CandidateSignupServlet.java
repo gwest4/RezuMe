@@ -76,6 +76,9 @@ public class CandidateSignupServlet extends HttpServlet {
     // Zip code
     htmlStringBuilder.append("<label class=\"label-text\" for=\"zip\">Zip Code *</label>");
     htmlStringBuilder.append("<input id=\"zip\" class=\"textbox\" type=\"text\" name=\"zip\" size=\"30\" required><br><br>");
+    // School
+    htmlStringBuilder.append("<label class=\"label-text\" for=\"school\">School *</label>");
+    htmlStringBuilder.append("<input id=\"school\" class=\"textbox\" type=\"text\" name=\"school\" size=\"30\" required><br><br>");
     // Industry
     htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
     htmlStringBuilder.append("<select id=\"industry\" name=\"industry\" required>");
