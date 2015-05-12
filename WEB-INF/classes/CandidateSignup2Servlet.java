@@ -132,6 +132,10 @@ public class CandidateSignup2Servlet extends HttpServlet {
       DatabaseController.getInstance().addNewCandidate(firstName, lastName, email, password, phone, address,
           city, state, zip, school, industry);
 
+      session.setAttribute("loggedIn", "true");
+      session.setAttribute("candidateLoggedIn", "true");
+      session.setAttribute("currentUserId", email);
+
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
       htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");
@@ -142,7 +146,7 @@ public class CandidateSignup2Servlet extends HttpServlet {
       htmlStringBuilder.append("<p class=\"box-header-text\">Available Skills</p>\r\n\t\t\t");
       htmlStringBuilder.append("<ul id=\"availableskills\" class=\"connected sortable list\">");
 
-      HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(request.getParameter("industry"));
+      HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(request.getParameter("industry"), "NAME");
       
       for (String skillsKey : skills.keySet()) {
         htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");

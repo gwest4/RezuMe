@@ -3,6 +3,7 @@ import database.*;
 import provider.*;
 
 import java.io.*;
+import java.util.HashMap;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,7 +21,7 @@ public class LoginValidationServlet extends HttpServlet {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("login.css"));
+    StringBuilder htmlStringBuilder = new StringBuilder();
 
     String inputEmail = request.getParameter("email");
     String inputPassword = request.getParameter("password");
@@ -36,6 +37,7 @@ public class LoginValidationServlet extends HttpServlet {
     }
 
     if (!isAuthenticated) {
+      htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlHead("login.css"));
       htmlStringBuilder.append("<div id=\"body-login\">");
       htmlStringBuilder.append("<p class=\"body-login-header\">Please Sign In</p>");
       htmlStringBuilder.append("<br><br>");
@@ -65,6 +67,32 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<p id=\"signup-link-text2\"><a id=\"signup-link2\" "
           + "href=\"signup.html\">Not registered? Sign up now.</a></p>");
       htmlStringBuilder.append("</div></div>");
+    } else if (!DatabaseController.getInstance().candidateCompletedSkills(inputEmail)) {
+      htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
+
+      htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");
+      htmlStringBuilder.append("<p class=\"body-skills-text\">Now it's time for you to rank your skills based on your selected industry.</p>\r\n\t\t\t<br>");
+      htmlStringBuilder.append("\r\n\t\t\t<p class=\"body-skills-text\">Use the left pane to drag and drop your desired skills to the right pane in your order of strength.</p>");
+      htmlStringBuilder.append("\r\n\t\t\t<br><br><br><br>\r\n\t\t\t");
+      htmlStringBuilder.append("<div id=\"available-skills\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<p class=\"box-header-text\">Available Skills</p>\r\n\t\t\t");
+      htmlStringBuilder.append("<ul id=\"availableskills\" class=\"connected sortable list\">");
+
+      HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(
+          DatabaseController.getInstance().getCandidateIndustryId(inputEmail), "ID");
+      
+      for (String skillsKey : skills.keySet()) {
+        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
+      }
+
+      htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
+      htmlStringBuilder.append("<div id=\"selected-skills\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<p class=\"box-header-text\">Selected Skills</p>\r\n\t\t\t");
+      htmlStringBuilder.append("<ul id=\"selectedskills\" class=\"connected sortable list\">");
+      htmlStringBuilder.append("<li class=\"disabled\">Place your skills below.</li>");
+      htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
+      htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t");
+      htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     } else {
       if (request.getParameter("loginType").equals("candidate")) {
         response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)

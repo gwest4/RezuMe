@@ -155,6 +155,58 @@ public class DatabaseController {
     return emailExists;
   }
 
+  public boolean candidateCompletedSkills(String email) {
+    boolean candidateCompletedSkills = true;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      String result = statement.executeQuery("SELECT count(*) FROM rzm_candidate WHERE email = '"
+          + email + "' AND skills IS NOT NULL;").getObject(1).toString();
+
+      if (result.equals("0")) {
+        candidateCompletedSkills = false;
+      }
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+    }
+
+    return candidateCompletedSkills;
+  }
+
+  public String getCandidateIndustryId(String email) {
+    String industryId = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      industryId = statement
+          .executeQuery("SELECT industry_id FROM rzm_candidate WHERE email = '" + email + "';")
+          .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return industryId;
+  }
+
   public String getIndustryId(String industryName) {
     String industryId = null;
 
@@ -180,7 +232,7 @@ public class DatabaseController {
     return industryId;
   }
 
-  public HashMap<String, String> getIndustrySkills(String industryName) {
+  public HashMap<String, String> getIndustrySkills(String industry, String inputType) {
     HashMap<String, String> skills = new HashMap<String, String>();
 
     try {
@@ -191,10 +243,17 @@ public class DatabaseController {
 
       Statement statement = connection.createStatement();
 
-      String industryId = getIndustryId(industryName);
+      ResultSet resultSet = null;
 
-      ResultSet resultSet = statement.executeQuery("SELECT skill_id, name FROM rzm_skill WHERE industry_id = '"
-          + industryId + "' ORDER BY name;");
+      if (inputType.equals("NAME")) {
+        String industryId = getIndustryId(industry);
+
+        resultSet = statement.executeQuery("SELECT skill_id, name FROM rzm_skill WHERE industry_id = '"
+            + industryId + "' ORDER BY name;");
+      } else {
+        resultSet = statement.executeQuery("SELECT skill_id, name FROM rzm_skill WHERE industry_id = '"
+            + industry + "' ORDER BY name;");
+      }
 
       while (resultSet.next()) {
         skills.put(resultSet.getString("skill_id"), resultSet.getString("name"));
