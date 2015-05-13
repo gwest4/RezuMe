@@ -154,9 +154,9 @@ public class CandidateSignup2Servlet extends HttpServlet {
       if (!(skills == null)) {
 	      for (String skillsKey : skills.keySet()) {
 	        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
-	      } else {
+	      } 
+      } else {
 	        htmlStringBuilder.append("<option value=\"error\">No Skill Found</option>\r\n");
-	      }
       }
 
       htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
