@@ -1,5 +1,4 @@
 import database.*;
-
 import provider.*;
 
 import java.io.*;
@@ -108,9 +107,13 @@ public class CandidateSignup2Servlet extends HttpServlet {
       htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
       htmlStringBuilder.append("<select id=\"industry\" name=\"industry\" required>");
       ArrayList<String> industries = DatabaseController.getInstance().getIndustries();
-      
-      for (String industry : industries) {
-        htmlStringBuilder.append("<option value=\"" + industry + "\">" + industry + "</option>\r\n");
+
+      if (!(industries == null)) {
+  	    for (String industry : industries) {
+  	      htmlStringBuilder.append("<option value=\"" + industry + "\">" + industry + "</option>\r\n");
+  	    }
+      } else {
+      	htmlStringBuilder.append("<option value=\"error\">No Industry Found</option>\r\n");
       }
       
       htmlStringBuilder.append("</select><br><br><br>");
@@ -148,8 +151,12 @@ public class CandidateSignup2Servlet extends HttpServlet {
 
       HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(request.getParameter("industry"), "NAME");
       
-      for (String skillsKey : skills.keySet()) {
-        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
+      if (!(skills == null)) {
+	      for (String skillsKey : skills.keySet()) {
+	        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
+	      } else {
+	        htmlStringBuilder.append("<option value=\"error\">No Skill Found</option>\r\n");
+	      }
       }
 
       htmlStringBuilder.append("</ul></div>\r\n\t\t\t");

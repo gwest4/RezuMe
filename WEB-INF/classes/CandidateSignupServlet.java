@@ -83,11 +83,13 @@ public class CandidateSignupServlet extends HttpServlet {
     htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
     htmlStringBuilder.append("<select id=\"industry\" name=\"industry\" required>");
     ArrayList<String> industries = DatabaseController.getInstance().getIndustries();
-    
-    for (String industry : industries) {
-      htmlStringBuilder.append("<option value=\"" + industry + "\">" + industry + "</option>\r\n");
+    if (!(industries == null)) {
+	    for (String industry : industries) {
+	      htmlStringBuilder.append("<option value=\"" + industry + "\">" + industry + "</option>\r\n");
+	    }
+    } else {
+    	htmlStringBuilder.append("<option value=\"error\">No Industry Found</option>\r\n");
     }
-    
     htmlStringBuilder.append("</select><br><br><br>");
     htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">");
     htmlStringBuilder.append("</div></form></div></div>");
