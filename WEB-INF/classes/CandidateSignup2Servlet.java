@@ -114,6 +114,7 @@ public class CandidateSignup2Servlet extends HttpServlet {
   	    }
       } else {
       	htmlStringBuilder.append("<option value=\"error\">No Industry Found</option>\r\n");
+      	log("WARNING: getIndustries() yielded null");
       }
       
       htmlStringBuilder.append("</select><br><br><br>");
@@ -148,7 +149,7 @@ public class CandidateSignup2Servlet extends HttpServlet {
       htmlStringBuilder.append("<div id=\"available-skills\">\r\n\t\t\t\t");
       htmlStringBuilder.append("<p class=\"box-header-text\">Available Skills</p>\r\n\t\t\t");
       htmlStringBuilder.append("<ul id=\"availableskills\" class=\"connected sortable list\">");
-
+      
       HashMap<String, String> skills = DatabaseController.getInstance().getIndustrySkills(request.getParameter("industry"), "NAME");
       
       if (!(skills == null)) {
@@ -156,7 +157,8 @@ public class CandidateSignup2Servlet extends HttpServlet {
 	        htmlStringBuilder.append("<li id=\"" + skillsKey + "\">" + skills.get(skillsKey) + "</li>");
 	      } 
       } else {
-	        htmlStringBuilder.append("<option value=\"error\">No Skill Found</option>\r\n");
+    	  htmlStringBuilder.append("<option value=\"error\">No Skill Found</option>\r\n");
+	      log("WARNING: getIndustrySkills() yielded null");
       }
 
       htmlStringBuilder.append("</ul></div>\r\n\t\t\t");

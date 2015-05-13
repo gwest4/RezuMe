@@ -89,6 +89,7 @@ public class CandidateSignupServlet extends HttpServlet {
 	    }
     } else {
     	htmlStringBuilder.append("<option value=\"error\">No Industry Found</option>\r\n");
+    	log("WARNING: getIndustries() yielded null");
     }
     htmlStringBuilder.append("</select><br><br><br>");
     htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">");
