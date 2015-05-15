@@ -279,4 +279,12 @@ public class DatabaseController {
       + phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "', '"
       + school + "', '" + getIndustryId(industry) + "');");
   }
+
+  public void addNewOrganization(String name, String ein, String email, String password, 
+      String phone, String address, String city, String state, String zip) {
+    executeInsertUpdate("INSERT INTO rzm_organization (name, ein, email, password,"
+      + "phone, address, city, state, zip) VALUES ('"
+      + name + "', '" + ein + "', '" + email + "', '" + password + "', '"
+      + phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "');");
+  }
 }

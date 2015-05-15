@@ -124,6 +124,22 @@ a:link {
   width: 15em;
 }
 
+#return-link:link {
+  color: blue;
+  text-decoration: none;
+}
+
+#return-link:visited {
+  color: blue;
+  text-decoration: none;
+}
+#return-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+  text-align: center;
+}
+
 footer {
   background-color: #33292E;
   margin-left: auto;

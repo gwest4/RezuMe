@@ -92,4 +92,26 @@
     <url-pattern>/OrganizationSignupServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- OrganizationSignupHomeServlet -->
+  <servlet>
+    <servlet-name>OrganizationSignupHomeServlet</servlet-name>
+    <servlet-class>OrganizationSignupHomeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationSignupHomeServlet</servlet-name>
+    <url-pattern>/OrganizationSignupHomeServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- OrganizationHomeServlet -->
+  <servlet>
+    <servlet-name>OrganizationHomeServlet</servlet-name>
+    <servlet-class>OrganizationHomeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationHomeServlet</servlet-name>
+    <url-pattern>/OrganizationHomeServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>

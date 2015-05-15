@@ -26,7 +26,7 @@ public class OrganizationSignupServlet extends HttpServlet {
     htmlStringBuilder.append("<div id=\"body-signup\">");
     htmlStringBuilder.append("<p class=\"body-signup-header\">New Organization Registration<br><br></em></p>");
     htmlStringBuilder.append("<p class=\"body-signup-text\">* denotes a mandatory field.</p><br><br>");
-    htmlStringBuilder.append("<form action=\"OrganizationSignup2Servlet\" method=\"post\">");
+    htmlStringBuilder.append("<form action=\"OrganizationSignupHomeServlet\" method=\"post\">");
     htmlStringBuilder.append("<div id=\"login-credentials\">");
     // Name
     htmlStringBuilder.append("<label class=\"label-text\" for=\"name\">Name *</label>");
@@ -37,15 +37,15 @@ public class OrganizationSignupServlet extends HttpServlet {
     // Email
     htmlStringBuilder.append("<label class=\"label-text\" for=\"email\">Email *</label>");
     htmlStringBuilder.append("<input id=\"email\" class=\"textbox\" type=\"email\" name=\"email\" size=\"30\" required><br><br>");
-    // Phone
-    htmlStringBuilder.append("<label class=\"label-text\" for=\"phone\">Phone *</label>");
-    htmlStringBuilder.append("<input id=\"phone\" class=\"textbox\" type=\"text\" name=\"phone\" size=\"30\" required><br><br>");
     // Password
     htmlStringBuilder.append("<label class=\"label-text\" for=\"password1\">Password *</label>");
     htmlStringBuilder.append("<input id=\"password1\" class=\"textbox\" type=\"password\" name=\"password1\" size=\"30\" required><br><br>");
     // Password verification
     htmlStringBuilder.append("<label class=\"label-text\" for=\"password2\">Verify Password *</label>");
     htmlStringBuilder.append("<input id=\"password2\" class=\"textbox\" type=\"password\" name=\"password2\" size=\"30\" required><br><br>");
+    // Phone
+    htmlStringBuilder.append("<label class=\"label-text\" for=\"phone\">Phone *</label>");
+    htmlStringBuilder.append("<input id=\"phone\" class=\"textbox\" type=\"text\" name=\"phone\" size=\"30\" required><br><br>");
     // Street address
     htmlStringBuilder.append("<label class=\"label-text\" for=\"streetaddress\">Street Address *</label>");
     htmlStringBuilder.append("<input id=\"streetaddress\" class=\"textbox\" type=\"text\" name=\"streetaddress\" size=\"30\" required><br><br>");
