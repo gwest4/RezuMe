@@ -52,7 +52,6 @@ public class DatabaseController {
           statement.executeQuery("SELECT password FROM rzm_candidate WHERE email='" + email + "';")
               .getObject(1).toString();
 
-
       statement.close();
       connection.close();
     } catch (Exception e) {
@@ -76,7 +75,6 @@ public class DatabaseController {
           statement
               .executeQuery("SELECT password FROM rzm_organization WHERE email='" + email + "';")
               .getObject(1).toString();
-
 
       statement.close();
       connection.close();
@@ -286,5 +284,30 @@ public class DatabaseController {
       + "phone, address, city, state, zip) VALUES ('"
       + name + "', '" + ein + "', '" + email + "', '" + password + "', '"
       + phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "');");
+  }
+
+  public String getOrganizationName(String email) {
+    String name = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      name = statement
+          .executeQuery("SELECT name FROM rzm_organization WHERE email = '" + email + "';")
+          .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return name;
   }
 }

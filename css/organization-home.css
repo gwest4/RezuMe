@@ -1,0 +1,155 @@
+@charset "utf-8";
+
+body {
+  background-color: #493A42;
+}
+
+#container {
+  background-color: #F4E6ED;
+  margin-top: -2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+  height: 87em;
+}
+
+#header {
+  background-color: #F4E6ED;
+  margin-top: -2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+}
+
+#header-logo {
+  margin-top: -15em;
+  margin-bottom: 10em;
+  padding-left: 2em;
+  width: 66.5em;
+}
+
+#header-logo-text {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 6em;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+#header-logo-subtext {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  margin-left: 0.2em;
+}
+
+#login-button {
+  float: right;
+  background-color: #145597;
+  border: solid;
+  border-color: white;
+  border-radius: 0.2em;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: white;
+  height: 4.3em;
+  width: 10em;
+  position: relative;
+  top: -14em;
+  right: 4em;
+}
+
+#signup-link:link {
+  color: white;
+  text-decoration: none;
+}
+
+#signup-link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+#signup-link-text {
+  float: right;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  position: relative;
+  top: -7em;
+  left: 6.7em;
+}
+
+#body-text {
+  text-align: center;
+  float: left;
+  margin-top: -5em;
+}
+
+.body-text-header {
+  padding-top: 1em;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+}
+
+.body-text-text {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  padding-left: 7em;
+  padding-right: 7em;
+  line-height: 1.3em;
+}
+
+.nav-form {
+  display: inline-block;
+}
+
+#nav-header {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+}
+
+.home-button {
+  background-color: #F4E6ED;
+  border: solid;
+  border-color: white;
+  border-width: 0px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: #145597;
+  height: 3em;
+  width: 10em;
+}
+
+footer {
+  background-color: #33292E;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+}
+
+#footer-text {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

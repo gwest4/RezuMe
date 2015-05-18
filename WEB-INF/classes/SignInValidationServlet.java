@@ -9,14 +9,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 /**
- * LoginValidationServlet.
+ * SignInValidationServlet.
  * 
  * @author Adrian Baran
  */
-public class LoginValidationServlet extends HttpServlet {
+public class SignInValidationServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
@@ -43,7 +43,7 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<br><br>");
       htmlStringBuilder.append("<p id=\"body-login-error\">Oops! Invalid email/password...</p>");
       htmlStringBuilder.append("<br><br>");
-      htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
+      htmlStringBuilder.append("<form action=\"SignInValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
           + "value=\"candidate\" checked>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"candidate\">"
@@ -67,7 +67,8 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<p id=\"signup-link-text2\"><a id=\"signup-link2\" "
           + "href=\"signup.html\">Not registered? Sign up now.</a></p>");
       htmlStringBuilder.append("</div></div>");
-    } else if (!DatabaseController.getInstance().candidateCompletedSkills(inputEmail)) {
+    } else if (request.getParameter("loginType").equals("candidate") &&
+        !DatabaseController.getInstance().candidateCompletedSkills(inputEmail)) {
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
       htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");
@@ -95,11 +96,27 @@ public class LoginValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     } else {
       if (request.getParameter("loginType").equals("candidate")) {
-        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-            + "/RezuMe/CandidateHomeServlet");
+        session.setAttribute("loggedIn", "true");
+        session.setAttribute("candidateLoggedIn", "true");
+        session.setAttribute("organizationLoggedIn", "false");
+        session.setAttribute("currentUser", inputEmail);
+
+        // CandidateHomeServlet cHSObject = new CandidateHomeServlet();
+        // cHSObject.doPost(request, response);
+
+        // response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+        //     + "/RezuMe/CandidateHomeServlet");
       } else {
-        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-            + "/RezuMe/OrganizationHomeServlet");
+        session.setAttribute("loggedIn", "true");
+        session.setAttribute("organizationLoggedIn", "true");
+        session.setAttribute("candidateLoggedIn", "false");
+        session.setAttribute("currentUser", inputEmail);
+
+        OrganizationHomeServlet oHSObject = new OrganizationHomeServlet();
+        oHSObject.doPost(request, response);
+
+        // response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+        //     + "/RezuMe/OrganizationHomeServlet");
       }
     }
 

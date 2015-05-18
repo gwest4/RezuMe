@@ -26,26 +26,26 @@
     <location>/error.html</location>
   </error-page>
 
-  <!-- LoginServlet -->
+  <!-- SignInServlet -->
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>LoginServlet</servlet-class>
+    <servlet-name>SignInServlet</servlet-name>
+    <servlet-class>SignInServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
+    <servlet-name>SignInServlet</servlet-name>
+    <url-pattern>/SignInServlet</url-pattern>
   </servlet-mapping>
 
-  <!-- LoginValidationServlet -->
+  <!-- SignInValidationServlet -->
   <servlet>
-    <servlet-name>LoginValidationServlet</servlet-name>
-    <servlet-class>LoginValidationServlet</servlet-class>
+    <servlet-name>SignInValidationServlet</servlet-name>
+    <servlet-class>SignInValidationServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>LoginValidationServlet</servlet-name>
-    <url-pattern>/LoginValidationServlet</url-pattern>
+    <servlet-name>SignInValidationServlet</servlet-name>
+    <url-pattern>/SignInValidationServlet</url-pattern>
   </servlet-mapping>
 
   <!-- CandidateSignupServlet -->
@@ -112,6 +112,17 @@
   <servlet-mapping>
     <servlet-name>OrganizationHomeServlet</servlet-name>
     <url-pattern>/OrganizationHomeServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- SignOutServlet -->
+  <servlet>
+    <servlet-name>SignOutServlet</servlet-name>
+    <servlet-class>SignOutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SignOutServlet</servlet-name>
+    <url-pattern>/SignOutServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

@@ -5,33 +5,35 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 /**
- * LoginServlet.
+ * SignInServlet.
  * 
  * @author Adrian Baran
  */
-public class LoginServlet extends HttpServlet {
+public class SignInServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("login.css"));
 
-    if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) {
-      String currentUserId = (String) session.getAttribute("currentUserId");
+    if (session.getAttribute("loggedIn") != null && Boolean.parseBoolean((String) session.getAttribute("loggedIn"))) {
+      String currentUser = (String) session.getAttribute("currentUser");
 
-      if ((boolean) session.getAttribute("candidateLoggedIn")) {
-        // TODO: Load Candidate home screen
-      } else if ((boolean) session.getAttribute("organizationLoggedIn")) {
-        // TODO: Load Organization home screen
+      if (Boolean.parseBoolean((String) session.getAttribute("candidateLoggedIn"))) {
+        // CandidateHomeServlet cHSObject = new CandidateHomeServlet();
+        // cHSObject.doPost(request, response);
+      } else if (Boolean.parseBoolean((String) session.getAttribute("organizationLoggedIn"))) {
+        OrganizationHomeServlet oHSObject = new OrganizationHomeServlet();
+        oHSObject.doPost(request, response);
       }
     } else {
       htmlStringBuilder.append("<div id=\"body-login\">");
       htmlStringBuilder.append("<p class=\"body-login-header\">Please Sign In</p>");
       htmlStringBuilder.append("<br><br>");
-      htmlStringBuilder.append("<form action=\"LoginValidationServlet\" method=\"post\">");
+      htmlStringBuilder.append("<form action=\"SignInValidationServlet\" method=\"post\">");
       htmlStringBuilder.append("<input id=\"candidate\" type=\"radio\" name=\"loginType\" "
           + "value=\"candidate\" checked>");
       htmlStringBuilder.append("<label class=\"label-text\" for=\"candidate\">"

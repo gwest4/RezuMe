@@ -107,7 +107,7 @@ public class OrganizationSignupHomeServlet extends HttpServlet {
       String name = request.getParameter("name");
       String ein = request.getParameter("ein");
       String email = request.getParameter("email");
-      String password = PasswordHasher.getInstance().generateHash(request.getParameter("password"));
+      String password = PasswordHasher.getInstance().generateHash(request.getParameter("password1"));
       String phone = request.getParameter("phone");
       String address = request.getParameter("streetaddress");
       String city = request.getParameter("city");
@@ -116,10 +116,6 @@ public class OrganizationSignupHomeServlet extends HttpServlet {
 
       DatabaseController.getInstance().addNewOrganization(name, ein, email, password, phone, address,
           city, state, zip);
-
-      session.setAttribute("loggedIn", "true");
-      session.setAttribute("organizationLoggedIn", "true");
-      session.setAttribute("currentUserId", email);
 
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlHead("signup-select.css"));
 
