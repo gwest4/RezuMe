@@ -23,7 +23,7 @@ public class CandidateWapServlet extends HttpServlet {
 
     System.out.println(request.getParameterValues("selectedskillsinput"));
     
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("CSS HERE"));
+    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("candidate-wap.css"));
 
     
     htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
