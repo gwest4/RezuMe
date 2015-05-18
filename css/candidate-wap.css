@@ -87,7 +87,21 @@ a:link {
 }
 
 
+#body-WAPQuiz {
+  text-align: center;
+  float: left;
+  margin-top: -5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66.5em;
+}
 
+.body-WAPQuiz-header {
+  padding-top: 1em;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+}
 
 
 
