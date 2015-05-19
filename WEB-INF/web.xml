@@ -113,6 +113,17 @@
     <servlet-name>OrganizationHomeServlet</servlet-name>
     <url-pattern>/OrganizationHomeServlet</url-pattern>
   </servlet-mapping>
+  
+  <!-- CandidateHomeServlet -->
+  <servlet>
+    <servlet-name>CandidateHomeServlet</servlet-name>
+    <servlet-class>CandidateHomeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CandidateHomeServlet</servlet-name>
+    <url-pattern>/CandidateHomeServlet</url-pattern>
+  </servlet-mapping>
 
   <!-- SignOutServlet -->
   <servlet>

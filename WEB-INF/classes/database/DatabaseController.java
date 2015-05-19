@@ -310,4 +310,28 @@ public class DatabaseController {
 
     return name;
   }
+  
+  public String getCandidateName(String email) {
+	  String name = null;
+	  
+	  try {
+		  Class.forName("org.sqlite.JDBC");
+		  Connection connection = 
+				  DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+		  connection.setAutoCommit(false);
+		  
+		  Statement statement = connection.createStatement();
+		  name = statement
+				  .executeQuery("SELECT name FROM rzm_candidate WHERE email = '" + email + "';")
+				  .getObject(1).toString();
+		  statement.close();
+		  connection.close();
+	  } catch (Exception e) {
+	      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+	      e.printStackTrace();
+	      return null;
+	  }
+	  
+	  return name;
+  }
 }
