@@ -114,6 +114,28 @@
     <url-pattern>/OrganizationHomeServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- OrganizationNewJobServlet -->
+  <servlet>
+    <servlet-name>OrganizationNewJobServlet</servlet-name>
+    <servlet-class>OrganizationNewJobServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationNewJobServlet</servlet-name>
+    <url-pattern>/OrganizationNewJobServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- OrganizationNewJobSkillsServlet -->
+  <servlet>
+    <servlet-name>OrganizationNewJobSkillsServlet</servlet-name>
+    <servlet-class>OrganizationNewJobSkillsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationNewJobSkillsServlet</servlet-name>
+    <url-pattern>/OrganizationNewJobSkillsServlet</url-pattern>
+  </servlet-mapping>
+
   <!-- SignOutServlet -->
   <servlet>
     <servlet-name>SignOutServlet</servlet-name>

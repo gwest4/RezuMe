@@ -22,7 +22,7 @@ public class SignOutServlet extends HttpServlet {
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
 
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("signup-select.css"));
+    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("signout.css"));
 
     session.setAttribute("loggedIn", "false");
     session.setAttribute("organizationLoggedIn", "false");
