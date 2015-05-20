@@ -147,4 +147,15 @@
     <url-pattern>/SignOutServlet</url-pattern>
   </servlet-mapping>
 
+<!-- OrganizationWapServlet-->
+  <servlet>
+    <servlet-name>OrganizationWapServlet</servlet-name>
+    <servlet-class>OrganizationWapServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationWapServlet</servlet-name>
+    <url-pattern>/OrganizationWapServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
