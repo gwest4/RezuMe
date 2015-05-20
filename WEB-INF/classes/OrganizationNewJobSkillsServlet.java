@@ -16,7 +16,7 @@ import javax.servlet.http.*;
 public class OrganizationNewJobSkillsServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
@@ -55,7 +55,7 @@ public class OrganizationNewJobSkillsServlet extends HttpServlet {
     htmlStringBuilder.append("<ul id=\"selectedskills\" class=\"connected sortable list\">");
     htmlStringBuilder.append("<li class=\"disabled\">Place your skills below.</li>");
     htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
-    htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t");
+    htmlStringBuilder.append("<form action=\"OrganizationWapServlet\" method=\"post\">\r\n\t\t\t\t");
     htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
     out.println(htmlStringBuilder.toString());

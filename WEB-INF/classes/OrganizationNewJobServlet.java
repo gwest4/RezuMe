@@ -32,7 +32,7 @@ public class OrganizationNewJobServlet extends HttpServlet {
     htmlStringBuilder.append("<div id=\"body-signup\">");
     htmlStringBuilder.append("<p class=\"body-signup-header\">New Job Listing<br><br></em></p>");
     htmlStringBuilder.append("<p class=\"body-signup-text\">* denotes a mandatory field.</p><br><br>");
-    htmlStringBuilder.append("<form method=\"get\">");
+    htmlStringBuilder.append("<form action=\"OrganizationNewJobSkillsServlet\" method=\"get\">");
     htmlStringBuilder.append("<div id=\"login-credentials\">");
     // Industry
     htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry *</label>");
