@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 87em;
+  height: 60em;
 }
 
 #header {
@@ -105,7 +105,7 @@ a:link {
   font-weight: 300;
   font-size: 1.5em;
   text-align: center;
-  padding-top: 3em;
+  padding-top: 1em;
   padding-bottom: 3em;
   padding-left: 7em;
   padding-right: 7em;
@@ -121,10 +121,11 @@ a:link {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
+  background-color: #D3AAAA;
 }
 
 .home-button {
-  background-color: #F4E6ED;
+  background-color: #D3AAAA;
   border: solid;
   border-color: white;
   border-width: 0px;

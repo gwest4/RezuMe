@@ -286,6 +286,36 @@ public class DatabaseController {
       + phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "');");
   }
 
+  public void addNewJobListing(String email, String industry, String title, String description) {
+    executeInsertUpdate("INSERT INTO rzm_joblisting (organization_id, industry_id, title, description) VALUES ('"
+      + getOrganizationId(email) + "', '" + getIndustryId(industry) + "', '" + title + "', '" + description + "');");
+  }
+
+  public String getOrganizationId(String email) {
+    String id = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      id = statement
+          .executeQuery("SELECT organization_id FROM rzm_organization WHERE email = '" + email + "';")
+          .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return id;
+  }
+
   public String getOrganizationName(String email) {
     String name = null;
 

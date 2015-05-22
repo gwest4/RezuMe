@@ -125,6 +125,28 @@
     <url-pattern>/CandidateHomeServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- OrganizationNewJobServlet -->
+  <servlet>
+    <servlet-name>OrganizationNewJobServlet</servlet-name>
+    <servlet-class>OrganizationNewJobServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationNewJobServlet</servlet-name>
+    <url-pattern>/OrganizationNewJobServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- OrganizationNewJobSkillsServlet -->
+  <servlet>
+    <servlet-name>OrganizationNewJobSkillsServlet</servlet-name>
+    <servlet-class>OrganizationNewJobSkillsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationNewJobSkillsServlet</servlet-name>
+    <url-pattern>/OrganizationNewJobSkillsServlet</url-pattern>
+  </servlet-mapping>
+
   <!-- SignOutServlet -->
   <servlet>
     <servlet-name>SignOutServlet</servlet-name>
@@ -134,6 +156,17 @@
   <servlet-mapping>
     <servlet-name>SignOutServlet</servlet-name>
     <url-pattern>/SignOutServlet</url-pattern>
+  </servlet-mapping>
+
+<!-- OrganizationWapServlet-->
+  <servlet>
+    <servlet-name>OrganizationWapServlet</servlet-name>
+    <servlet-class>OrganizationWapServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationWapServlet</servlet-name>
+    <url-pattern>/OrganizationWapServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
