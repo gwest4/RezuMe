@@ -32,9 +32,7 @@ public class CandidateHomeServlet extends HttpServlet {
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>");
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>");
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>");
-		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
-				"</strong><br><br>Here are your matches:</p>");
-		htmlStringBuilder.append("\r\n<div id=\"match-box\">\r\n\tSorry, no matches at this time.\r\n</div>");
+		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) + "</strong></p>");
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");
 		
