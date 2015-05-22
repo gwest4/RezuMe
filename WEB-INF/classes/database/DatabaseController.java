@@ -312,7 +312,7 @@ public class DatabaseController {
   }
   
   public String getCandidateName(String email) {
-	  String name = null;
+	  String firstname, lastname = null;
 	  
 	  try {
 		  Class.forName("org.sqlite.JDBC");
@@ -321,8 +321,13 @@ public class DatabaseController {
 		  connection.setAutoCommit(false);
 		  
 		  Statement statement = connection.createStatement();
-		  name = statement
-				  .executeQuery("SELECT name FROM rzm_candidate WHERE email = '" + email + "';")
+		  firstname = statement
+				  .executeQuery("SELECT firstname FROM rzm_candidate WHERE email = '" + email + "';")
+				  .getObject(1).toString();
+		  statement.close();
+		  statement = connection.createStatement();
+		  lastname = statement
+				  .executeQuery("SELECT lastname FROM rzm_candidate WHERE email = '" + email + "';")
 				  .getObject(1).toString();
 		  statement.close();
 		  connection.close();
@@ -332,6 +337,6 @@ public class DatabaseController {
 	      return null;
 	  }
 	  
-	  return name;
+	  return firstname + " " + lastname;
   }
 }

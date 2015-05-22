@@ -23,8 +23,8 @@ public class SignInServlet extends HttpServlet {
       String currentUser = (String) session.getAttribute("currentUser");
 
       if (Boolean.parseBoolean((String) session.getAttribute("candidateLoggedIn"))) {
-        // CandidateHomeServlet cHSObject = new CandidateHomeServlet();
-        // cHSObject.doPost(request, response);
+        CandidateHomeServlet cHSObject = new CandidateHomeServlet();
+        cHSObject.doPost(request, response);
       } else if (Boolean.parseBoolean((String) session.getAttribute("organizationLoggedIn"))) {
         OrganizationHomeServlet oHSObject = new OrganizationHomeServlet();
         oHSObject.doPost(request, response);

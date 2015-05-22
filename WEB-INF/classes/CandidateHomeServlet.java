@@ -15,23 +15,26 @@ import java.io.PrintWriter;
  * 
  * @author Adrian Baran, George West
  */
-public class CandidateHomeServlet {
+public class CandidateHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		
 	    response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
-		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("organization-home.css"));
+		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlUserHomeHead("candidate-home.css"));
 		
 		htmlStringBuilder.append("<div id=\"body-text\">");
 		htmlStringBuilder.append("<div id=\"nav-header\">");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\"><input class=\"home-button\" type=\"submit\" value=\"Home\"></form>");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\"><input class=\"home-button\" type=\"submit\" value=\"Sign Out\"></form></div>");
+		htmlStringBuilder.append("<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>");
+		htmlStringBuilder.append("<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>");
+		htmlStringBuilder.append("<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>");
 		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) + "</strong></p>");
-		htmlStringBuilder.append("</div></div>");
+		htmlStringBuilder.append("</div>");
+		htmlStringBuilder.append("</div>");
 		
 	    htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
 	    out.println(htmlStringBuilder.toString());

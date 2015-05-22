@@ -101,11 +101,11 @@ public class SignInValidationServlet extends HttpServlet {
         session.setAttribute("organizationLoggedIn", "false");
         session.setAttribute("currentUser", inputEmail);
 
-        // CandidateHomeServlet cHSObject = new CandidateHomeServlet();
-        // cHSObject.doPost(request, response);
+        CandidateHomeServlet cHSObject = new CandidateHomeServlet();
+        cHSObject.doPost(request, response);
 
-        // response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-        //     + "/RezuMe/CandidateHomeServlet");
+        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+             + "/RezuMe/CandidateHomeServlet");
       } else {
         session.setAttribute("loggedIn", "true");
         session.setAttribute("organizationLoggedIn", "true");
