@@ -3,6 +3,8 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import util.Pair;
 
 /**
  * The DatabaseController class allows for accessing and modifying the RezuMe database.
@@ -369,4 +371,46 @@ public class DatabaseController {
 	  
 	  return firstname + " " + lastname;
   }
+  
+  public void setCandidateWap(String email, HashMap<String,Double> wapScores) {
+	  StringBuilder sb = new StringBuilder("");
+	  ArrayList<Double> list = new ArrayList<Double>();
+	  ArrayList<Pair> translatedWapScores = new ArrayList<Pair>();
+	  //HashMap<Double,Integer> translatedWapScores = new HashMap<Double,Integer>();
+	  Integer temp;
+	  try {
+		  Connection connection = 
+				  DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+		  connection.setAutoCommit(false);
+		  Statement statement = connection.createStatement();
+		  //Translate work attribute names into their sequence numbers
+		  for(Entry<String,Double> entry: wapScores.entrySet()) {
+			  System.out.println("Translating "+entry.getKey());
+			  statement = connection.createStatement();
+			  Integer sequence_no = Integer.valueOf(statement
+					  .executeQuery("SELECT wap_id FROM rzm_wap WHERE name = '" + entry.getKey() + "';")
+					  .getObject(1).toString());
+			  translatedWapScores.add(new Pair(entry.getValue(), sequence_no));
+			  list.add(entry.getValue());
+		  }
+		  statement.close();
+		  connection.close();
+		  list.sort(null);
+		  for (int i=0; i<list.size(); i++) {
+			  sb.append(translatedWapScores.get(list.get(i)).toString());
+			  translatedWapScores.remove(list.get(i));
+		  }
+		  System.out.println("WAPString: "+sb.toString());
+		  executeInsertUpdate("UPDATE rzm_candidate "
+			      + "SET wap='" + sb.toString() + "' WHERE email = '" + email + "';");
+	  } catch (Exception e) {
+	      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+	      e.printStackTrace();
+	  }
+  }
+  
+  public HashMap<String,Double> getCandidateWap(String email) {
+	  return null;
+  }
+  
 }

@@ -88,7 +88,9 @@ a:link {
 
 
 #body-WAPQuiz {
-  text-align: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  text-align: left;
   float: left;
   margin-top: -5em;
   margin-left: auto;

@@ -31,8 +31,13 @@ public class CandidateHomeServlet extends HttpServlet {
 		htmlStringBuilder.append("<div id=\"nav-header\">");
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>");
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>");
+		htmlStringBuilder.append("<form class=\"nav-form\" action=\"AddReferencesServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Add References\"></form>");
 		htmlStringBuilder.append("<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\"><input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>");
-		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) + "</strong></p>");
+		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
+				"</strong><br><br>Here are your matches:</p>");
+		htmlStringBuilder.append("\r\n<div id=\"match-box\">\r\n\t"+/*"Sorry, no matches at this time."+*/"\r\n");
+		//Add each match here
+		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");
 		

@@ -92,6 +92,10 @@ public class SignInValidationServlet extends HttpServlet {
       htmlStringBuilder.append("<ul id=\"selectedskills\" class=\"connected sortable list\">");
       htmlStringBuilder.append("<li class=\"disabled\">Place your skills below.</li>");
       htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
+      
+      //Needed the current user for the WapServlet to know who to fill out the DB for
+      session.setAttribute("currentUser", inputEmail);
+      
       htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t");
       htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     } else {
