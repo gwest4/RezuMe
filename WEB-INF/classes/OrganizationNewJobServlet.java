@@ -22,12 +22,6 @@ public class OrganizationNewJobServlet extends HttpServlet {
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("new-job.css"));
-
-    htmlStringBuilder.append("<script>");
-    htmlStringBuilder.append("function getTextArea() {");
-    htmlStringBuilder.append("alert(document.getElementById(\"description\").value);");
-    htmlStringBuilder.append("}");
-    htmlStringBuilder.append("</script>");
     
     htmlStringBuilder.append("<div id=\"body-signup\">");
     htmlStringBuilder.append("<p class=\"body-signup-header\">New Job Listing<br><br></em></p>");
@@ -50,9 +44,9 @@ public class OrganizationNewJobServlet extends HttpServlet {
     htmlStringBuilder.append("</select><br><br><label class=\"label-text\" for=\"title\">Title *</label>");
     htmlStringBuilder.append("<input id=\"title\" class=\"textbox\" type=\"text\" name=\"title\" size=\"30\" required><br><br><br>");
     // Description
-    htmlStringBuilder.append("<textarea id=\"description\" rows=\"15\" cols=\"50\" required>Insert the job description here.</textarea>");
+    htmlStringBuilder.append("<textarea name=\"description\" id=\"description\" rows=\"15\" cols=\"50\" required>Insert the job description here.</textarea>");
     htmlStringBuilder.append("<br><br><br>");
-    htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\" onclick=\"getTextArea();\">");
+    htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\" onclick=\"redirect();\">");
     htmlStringBuilder.append("</div></form></div></div>");
 
     htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());

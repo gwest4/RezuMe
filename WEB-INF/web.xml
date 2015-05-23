@@ -169,4 +169,14 @@
     <url-pattern>/OrganizationWapServlet</url-pattern>
   </servlet-mapping>
 
+<!-- OrganizationConfirmationServlet-->
+  <servlet>
+    <servlet-name>OrganizationConfirmationServlet</servlet-name>
+    <servlet-class>OrganizationConfirmationServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationConfirmationServlet</servlet-name>
+    <url-pattern>/OrganizationConfirmationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
