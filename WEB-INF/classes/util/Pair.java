@@ -32,6 +32,8 @@ public class Pair implements Comparable<Double> {
 		if (this.getKey() < that) return BEFORE;
 		if (this.getKey() > that) return AFTER;
 		if (this.getKey() == that) return EQUAL;
+
+		return Integer.MIN_INTEGER;
 	}
 	
 }

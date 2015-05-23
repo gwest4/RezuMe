@@ -12,7 +12,7 @@ import provider.*;
 /**
  * CandidateWapServlet.
  * 
- * @author Adrian Baran
+ * @author Adrian Baran, Aditya Narravula
  */
 public class CandidateWapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +22,10 @@ public class CandidateWapServlet extends HttpServlet {
 		response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
+
+		String skills = request.getParameter("skills");
+
+    DatabaseController.getInstance().updateCandidateSkills((String) session.getAttribute("currentNewCandidate"), skills);
 
 		System.out.println("SelectedSkillsInput: "+request.getParameterValues("selectedskillsinput"));
 		@SuppressWarnings("unchecked")

@@ -71,6 +71,18 @@ public class SignInValidationServlet extends HttpServlet {
         !DatabaseController.getInstance().candidateCompletedSkills(inputEmail)) {
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
+      session.setAttribute("currentNewCandidate", DatabaseController.getInstance().getCandidateId(inputEmail));
+
+      htmlStringBuilder.append("<script>");
+      htmlStringBuilder.append("function redirect() {");
+      htmlStringBuilder.append("var list = document.getElementById(\"selectedskills\").getElementsByTagName(\"li\");");
+      htmlStringBuilder.append("var skillsString = \"\";");
+      htmlStringBuilder.append("var i = 0;");
+      htmlStringBuilder.append(" for (i = 0; i < list.length; i++) {");
+      htmlStringBuilder.append("skillsString += list[i].id + \",\";");
+      htmlStringBuilder.append("} document.getElementById(\"skills\").value = skillsString.substring(1, skillsString.length - 1);");
+      htmlStringBuilder.append("}</script>");
+
       htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Candidate Registration<br><br><br></p>\r\n\t\t\t");
       htmlStringBuilder.append("<p class=\"body-skills-text\">Now it's time for you to rank your skills based on your selected industry.</p>\r\n\t\t\t<br>");
       htmlStringBuilder.append("\r\n\t\t\t<p class=\"body-skills-text\">Use the left pane to drag and drop your desired skills to the right pane in your order of strength.</p>");
@@ -97,7 +109,9 @@ public class SignInValidationServlet extends HttpServlet {
       session.setAttribute("currentUser", inputEmail);
       
       htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">\r\n\t\t\t\t");
-      htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
+      // Skills
+      htmlStringBuilder.append("<input id=\"skills\" type=\"hidden\" name=\"skills\"></input>");
+      htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\" onclick=\"redirect();\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
     } else {
       if (request.getParameter("loginType").equals("candidate")) {
         session.setAttribute("loggedIn", "true");
