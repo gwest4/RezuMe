@@ -369,4 +369,37 @@ public class DatabaseController {
 	  
 	  return firstname + " " + lastname;
   }
+
+  public String getJobListingId(String description) {
+    String id = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+      connection.setAutoCommit(false);
+
+      Statement statement = connection.createStatement();
+      id = statement
+          .executeQuery("SELECT joblisting_id FROM rzm_joblisting WHERE description = '" + description + "';")
+          .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
+
+    return id;
+  }
+
+  public void updateJobListingSkills(String jobListingId, String skills) {
+    executeInsertUpdate("UPDATE rzm_joblisting SET skills = \'" + skills + "\' WHERE joblisting_id = \'" + jobListingId + "\';");
+  }
+
+  public void updateJobListingWap(String jobListingId, String wap) {
+    executeInsertUpdate("UPDATE rzm_joblisting SET wap = \'" + wap + "\' WHERE joblisting_id = \'" + jobListingId + "\';");
+  }
 }

@@ -28,6 +28,8 @@ public class OrganizationNewJobSkillsServlet extends HttpServlet {
 
     DatabaseController.getInstance().addNewJobListing((String) session.getAttribute("currentUser"), industry, title, description);
 
+    session.setAttribute("currentNewJob", DatabaseController.getInstance().getJobListingId(description));
+
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead("signup-skills.css"));
 
     htmlStringBuilder.append("<script>");
@@ -37,7 +39,7 @@ public class OrganizationNewJobSkillsServlet extends HttpServlet {
     htmlStringBuilder.append("var i = 0;");
     htmlStringBuilder.append(" for (i = 0; i < list.length; i++) {");
     htmlStringBuilder.append("skillsString += list[i].id + \",\";");
-    htmlStringBuilder.append("} alert(skillsString.substring(1, skillsString.length - 1));");
+    htmlStringBuilder.append("} document.getElementById(\"skills\").value = skillsString.substring(1, skillsString.length - 1);");
     htmlStringBuilder.append("}</script>");
 
     htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">New Job Listing<br><br><br></p>\r\n\t\t\t");
@@ -66,7 +68,10 @@ public class OrganizationNewJobSkillsServlet extends HttpServlet {
     htmlStringBuilder.append("<li class=\"disabled\">Place your skills below.</li>");
     htmlStringBuilder.append("</ul></div>\r\n\t\t\t");
     htmlStringBuilder.append("<form action=\"OrganizationWapServlet\" method=\"post\">\r\n\t\t\t\t");
-    htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\" onclick=\"redirect();\">\r\n\t\t\t</form>\r\n\t\t</div>\r\n\t</div>");
+    htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\" onclick=\"redirect();\">\r\n\t\t\t");
+    // Skills
+    htmlStringBuilder.append("<input id=\"skills\" type=\"hidden\" name=\"skills\"></input>");
+    htmlStringBuilder.append("</form>\r\n\t\t</div>\r\n\t</div>");
     htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
     out.println(htmlStringBuilder.toString());
     out.close();
