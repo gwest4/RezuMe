@@ -12,7 +12,7 @@ import provider.*;
 /**
  * CandidateWapServlet.
  * 
- * @author Adrian Baran, Aditya Narravula
+ * @author Adrian Baran, Aditya Narravula, George West
  */
 public class CandidateWapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

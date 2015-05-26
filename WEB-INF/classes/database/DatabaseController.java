@@ -2,9 +2,10 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import util.Pair;
+
 
 /**
  * The DatabaseController class allows for accessing and modifying the RezuMe database.
@@ -398,9 +399,9 @@ public class DatabaseController {
   public void setCandidateWap(String email, HashMap<String,Double> wapScores) {
 	  StringBuilder sb = new StringBuilder("");
 	  ArrayList<Double> list = new ArrayList<Double>();
-	  ArrayList<Pair> translatedWapScores = new ArrayList<Pair>();
-	  //HashMap<Double,Integer> translatedWapScores = new HashMap<Double,Integer>();
+	  HashMap<Double,String> translatedWapScores = new HashMap<Double,String>();
 	  Integer temp;
+	  String temp_string;
 	  try {
 		  Connection connection = 
 				  DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
@@ -408,23 +409,27 @@ public class DatabaseController {
 		  Statement statement = connection.createStatement();
 		  //Translate work attribute names into their sequence numbers
 		  for(Entry<String,Double> entry: wapScores.entrySet()) {
-			  System.out.println("Translating "+entry.getKey());
 			  statement = connection.createStatement();
 			  Integer sequence_no = Integer.valueOf(statement
 					  .executeQuery("SELECT wap_id FROM rzm_wap WHERE name = '" + entry.getKey() + "';")
 					  .getObject(1).toString());
-			  translatedWapScores.add(new Pair(entry.getValue(), sequence_no));
-			  list.add(entry.getValue());
+			  temp_string = translatedWapScores.get(entry.getValue());
+			  if (temp_string != null) {
+				  translatedWapScores.put(entry.getValue(), temp_string + sequence_no.toString());
+			  } else {
+				  translatedWapScores.put(entry.getValue(), sequence_no.toString());
+				  list.add(entry.getValue());
+			  }
+			  
 		  }
 		  statement.close();
 		  connection.close();
-		  list.sort(null);
+		  list.sort(Collections.reverseOrder());
 		  for (int i=0; i<list.size(); i++) {
-        // TODO: Compiler error on line 424
-			  // sb.append(translatedWapScores.get(list.get(i)).toString());
+			  if (translatedWapScores.get(list.get(i)) == null) break;
+			  sb.append(translatedWapScores.get(list.get(i)));
 			  translatedWapScores.remove(list.get(i));
 		  }
-		  System.out.println("WAPString: "+sb.toString());
 		  executeInsertUpdate("UPDATE rzm_candidate "
 			      + "SET wap='" + sb.toString() + "' WHERE email = '" + email + "';");
 	  } catch (Exception e) {

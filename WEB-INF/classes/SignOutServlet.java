@@ -28,6 +28,7 @@ public class SignOutServlet extends HttpServlet {
     session.setAttribute("organizationLoggedIn", "false");
     session.setAttribute("candidateLoggedIn", "false");
     session.setAttribute("currentUser", null);
+    session.invalidate();
 
     htmlStringBuilder.append("<div id=\"body-signup\">");
     htmlStringBuilder.append("<p class=\"body-signup-header\">You have signed out.<br><br><br></em></p>");
