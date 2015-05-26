@@ -116,11 +116,11 @@ public class CandidateWapServlet extends HttpServlet {
 			htmlStringBuilder.append("</div></form></div></div>");
 
 		} else {
-			System.out.println("Redirecting to SignInValidationServlet");
-			SignInServlet sISObject = new SignInServlet();
-	        sISObject.doPost(request, response);
+			System.out.println("Redirecting to CandidateHomeServlet");
+			CandidateHomeServlet servletObject = new CandidateHomeServlet();
+	        servletObject.doPost(request, response);
 			response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-		             + "/RezuMe/SignInServlet");
+		             + "/RezuMe/CandidateHomeServlet");
 		}
 		htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlTail());
 		out.println(htmlStringBuilder.toString());
