@@ -41,6 +41,29 @@ public class DatabaseController {
     }
   }
 
+  public String getCandidateId(String email) {
+    String id = null;
+
+    try {
+      Class.forName("org.sqlite.JDBC");
+      Connection connection =
+          DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+
+      Statement statement = connection.createStatement();
+      id =
+          statement.executeQuery("SELECT candidate_id FROM rzm_candidate WHERE email='" + email + "';")
+              .getObject(1).toString();
+
+      statement.close();
+      connection.close();
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      return null;
+    }
+
+    return id;
+  }
+
   public String getCandidatePassword(String email) {
     String password = null;
 
@@ -397,7 +420,8 @@ public class DatabaseController {
 		  connection.close();
 		  list.sort(null);
 		  for (int i=0; i<list.size(); i++) {
-			  sb.append(translatedWapScores.get(list.get(i)).toString());
+        // TODO: Compiler error on line 424
+			  // sb.append(translatedWapScores.get(list.get(i)).toString());
 			  translatedWapScores.remove(list.get(i));
 		  }
 		  System.out.println("WAPString: "+sb.toString());
@@ -436,6 +460,10 @@ public class DatabaseController {
     }
 
     return id;
+  }
+
+  public void updateCandidateSkills(String candidateId, String skills) {
+    executeInsertUpdate("UPDATE rzm_candidate SET skills = \'" + skills + "\' WHERE candidate_id = \'" + candidateId + "\';");
   }
 
   public void updateJobListingSkills(String jobListingId, String skills) {
