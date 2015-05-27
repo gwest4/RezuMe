@@ -28,6 +28,10 @@ public class EditProfileServlet extends HttpServlet {
 				"</strong></p>");
 		htmlStringBuilder.append(
 				"\r\n<form class=\"form\" action=\"EditProfileConfirmationServlet\" method=\"post\">"
+					+ "\r\n\t<label class=\"label-text\" for=\"password1\">Password </label>"
+					+ "\r\n    <input id=\"password1\" class=\"textbox\" type=\"text\" name=\"password1\" size=\"30\"><br><br>"
+					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"password2\">Confirm password </label>"
+					+ "\r\n    <input id=\"password2\" class=\"textbox\" type=\"text\" name=\"password2\" size=\"30\"><br><br>"
 					+ "\r\n\t<label class=\"label-text\" for=\"email\">Email </label>"
 					+ "\r\n    <input id=\"email\" class=\"textbox\" type=\"text\" name=\"email\" size=\"30\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"address\">Address </label>"

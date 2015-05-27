@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.io.*;
 
 
 /**
@@ -376,6 +377,23 @@ public class DatabaseController {
 				+ firstName + "', '" + lastName + "', '" + email + "', '" + password + "', '"
 				+ phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "', '"
 				+ school + "', '" + getIndustryId(industry) + "');");
+	}
+	
+	public void updateCandidateProfile(String currentUser, String email, String password, String phone,
+		String address, String city, String state, String zip, String school,String industry) {
+		StringBuilder values = new StringBuilder();
+		if (email != null && !email.equals("")) values.append("email='"+email+"', ");
+		if (password != null && !password.equals("")) values.append("password='"+password+"', ");
+		if (phone != null && !phone.equals("")) values.append("phone='"+phone+"', ");
+		if (address != null && !address.equals("")) values.append("address='"+address+"', ");
+		if (city != null && !city.equals("")) values.append("city='"+city+"', ");
+		if (state != null && !state.equals("")) values.append("state='"+state+"', ");
+		if (zip != null && !zip.equals("")) values.append("zip='"+zip+"', ");
+		if (school != null && !school.equals("")) values.append("school='"+school+"', ");
+		if (industry != null && !industry.equals("")) values.append("industry_id='"+getIndustryId(industry)+"', ");
+		String query_part = values.substring(0, values.length()-2);
+		System.out.println("queryPart: "+query_part);
+		executeInsertUpdate("UPDATE rzm_candidate SET " +query_part+ " WHERE email = '" + currentUser + "';");
 	}
 
 	public void addNewOrganization(String name, String ein, String email, String password, 
