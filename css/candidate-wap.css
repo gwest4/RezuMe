@@ -105,6 +105,12 @@ a:link {
   font-size: 2em;
 }
 
+#body-WAPQuiz-error {
+  color: red;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+}
+
 h3 {
   font-family: 'Lato', sans-serif;
   font-size: 1.2em;

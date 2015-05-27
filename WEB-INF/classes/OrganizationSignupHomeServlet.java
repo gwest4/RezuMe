@@ -28,6 +28,11 @@ public class OrganizationSignupHomeServlet extends HttpServlet {
     String inputPassword1 = request.getParameter("password1");
     String inputPassword2 = request.getParameter("password2");
     
+    if ((inputPassword1 == null || inputPassword2 == null) || (inputPassword1.equals("null") || inputPassword2.equals("null"))) {
+		isValid = false;
+		errorMessage = "The password field cannot be empty.";
+	}
+    
     if (!inputPassword1.equals(inputPassword2)) {
       isValid = false;
       errorMessage = "Your two passwords do not match. Please try again.";
@@ -116,6 +121,10 @@ public class OrganizationSignupHomeServlet extends HttpServlet {
 
       DatabaseController.getInstance().addNewOrganization(name, ein, email, password, phone, address,
           city, state, zip);
+      
+      session.setAttribute("loggedIn", "true");
+      session.setAttribute("organizationLoggedIn", "true");
+      session.setAttribute("currentUser", email);
 
       htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlHead("signup-select.css"));
 

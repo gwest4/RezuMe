@@ -34,8 +34,8 @@ public class OrganizationWapServlet extends HttpServlet {
     htmlStringBuilder.append("var skillsString = \"\";");
     htmlStringBuilder.append("var i = 0;");
     htmlStringBuilder.append(" for (i = 0; i < list.length; i++) {");
-    htmlStringBuilder.append("skillsString += list[i].id + \",\";");
-    htmlStringBuilder.append("console.log(list[i].id);} document.getElementById(\"wap\").value = skillsString.substring(1, skillsString.length - 1);");
+    htmlStringBuilder.append("skillsString += list[i].id;");
+    htmlStringBuilder.append("console.log(list[i].id);} document.getElementById(\"wap\").value = skillsString;");
     htmlStringBuilder.append("}</script>");
 
     htmlStringBuilder.append("<div id=\"body-skills\">\r\n\t\t\t<p class=\"body-skills-header\">Job WAP Order<br><br><br></p>\r\n\t\t\t");

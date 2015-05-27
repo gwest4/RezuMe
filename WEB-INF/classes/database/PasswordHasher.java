@@ -45,7 +45,7 @@ public class PasswordHasher {
 			System.err.println(nSAE.getClass().getName() + ": " + nSAE.getMessage());
 			return null;
 		}
-
+		
 		return passwordHash.toString();
 	}
 
@@ -58,7 +58,6 @@ public class PasswordHasher {
 		} else if (loginType.equals("ORGANIZATION")) {
 			storedPasswordHash = DatabaseController.getInstance().getOrganizationPassword(email);
 		}
-
 		if (hashedInputPassword.equals(storedPasswordHash)) {
 			return true;
 		} else {
