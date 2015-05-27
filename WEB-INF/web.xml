@@ -179,4 +179,60 @@
     <servlet-name>OrganizationConfirmationServlet</servlet-name>
     <url-pattern>/OrganizationConfirmationServlet</url-pattern>
   </servlet-mapping>
+  
+  <!-- EditProfileServlet-->
+  <servlet>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <servlet-class>EditProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <url-pattern>/EditProfileServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- EditProfileConfirmationServlet-->
+  <servlet>
+    <servlet-name>EditProfileConfirmationServlet</servlet-name>
+    <servlet-class>EditProfileConfirmationServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>EditProfileConfirmationServlet</servlet-name>
+    <url-pattern>/EditProfileConfirmationServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- AddReferencesServlet-->
+  <servlet>
+    <servlet-name>AddReferencesServlet</servlet-name>
+    <servlet-class>AddReferencesServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AddReferencesServlet</servlet-name>
+    <url-pattern>/AddReferencesServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- AddReferencesConfirmationServlet-->
+  <servlet>
+    <servlet-name>AddReferencesConfirmationServlet</servlet-name>
+    <servlet-class>AddReferencesConfirmationServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AddReferencesConfirmationServlet</servlet-name>
+    <url-pattern>/AddReferencesConfirmationServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ContactServlet-->
+  <servlet>
+    <servlet-name>ContactServlet</servlet-name>
+    <servlet-class>ContactServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ContactServlet</servlet-name>
+    <url-pattern>/ContactServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

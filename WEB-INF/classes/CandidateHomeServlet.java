@@ -26,18 +26,10 @@ public class CandidateHomeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 
-		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlUserHomeHead("candidate-home.css"));
+		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("candidate-home.css"));
 
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append("<div id=\"nav-header\">");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\">"
-				+ "<input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\">"
-				+ "<input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"AddReferencesServlet\" method=\"post\">"
-				+ "<input class=\"nav-button\" type=\"submit\" value=\"Add References\"></form>");
-		htmlStringBuilder.append("<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\">"
-				+ "<input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>");
+		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
 		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + 
 				DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
 				"</strong><br><br>Here are your matches:</p>");
@@ -45,8 +37,6 @@ public class CandidateHomeServlet extends HttpServlet {
 		htmlStringBuilder.append("\r\n<div id=\"match-box\">\r\n\t"+/*"Sorry, no matches at this time."+*/"\r\n");
 		for (HashMap<String,String> match : matches) {
 			htmlStringBuilder.append("<div id=\"match\">");
-
-			System.out.println("JobListings: "+matches);
 			htmlStringBuilder.append("<table id=\"match-table\">"
 					+ "<tr class=\"table-header\">"
 					+ "<th>Organization</td>"
@@ -62,7 +52,8 @@ public class CandidateHomeServlet extends HttpServlet {
 					+ "<td class=\"long\">"+match.get("phone")+"</td>"
 					+ "</tr></table>");
 			htmlStringBuilder.append("<form class=\"contact-form\" action=\"ContactServlet\" method=\"post\">"
-					+ "<input class=\"contact-button\" type=\"submit\" value=\"Contact\"></form>");
+					+ "<input type=\"hidden\" name=\"job-listing-id\" value=\""+match.get("joblisting_id")+"\"></input>" 
+					+ "<input class=\"contact-button\" type=\"submit\" value=\"Contact\"></input></form>");
 			htmlStringBuilder.append("</div>");
 		}
 		htmlStringBuilder.append("</div>");

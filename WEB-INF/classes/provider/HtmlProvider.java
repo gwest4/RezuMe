@@ -25,6 +25,15 @@ public class HtmlProvider {
 			+ "DePaul University - Spring 2015 - Software Projects &copy; 2015 Team 2</p>\r\n"
 			+ "<center><img src=\"images/dpu-logo.png\" alt=\"\"></center>\r\n"
 			+ "</footer></body>\r\n</html>";
+	private static String navHeadString = "<div id=\"nav-header\">" +
+			"<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>" +
+			"<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>" +
+			"<form class=\"nav-form\" action=\"AddReferencesServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Add References\"></form>" +
+			"<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>";
 
 	private HtmlProvider() {}
 
@@ -73,7 +82,7 @@ public class HtmlProvider {
 		return htmlHeadString;
 	}
 
-	public String getHtmlUserHomeHead(String cssFile) {
+	public String getLoggedInHead(String cssFile) {
 		File f = new File(System.getProperty("user.dir")+"\\webapps\\RezuMe\\css\\"+cssFile);
 		if (!f.isFile()) {
 			System.err.println("File \""+cssFile+"\" could not be found");
@@ -89,5 +98,9 @@ public class HtmlProvider {
 				+ "\r\n\t\t\t</div>\r\n\t\t\t<form action=\"SignInServlet\" method=\"post\">\r\n\t\t\t\t"
 				+ "<input id=\"login-button\" type=\"submit\" value=\"My Account\">\r\n\t\t\t</form>\r\n\t\t</div>";
 		return htmlHeadString;
+	}
+	
+	public String getNavHead() {
+		return navHeadString;
 	}
 }

@@ -450,7 +450,6 @@ public class DatabaseController {
 			connection.setAutoCommit(false);
 
 			Statement statement1 = connection.createStatement();
-			System.out.println("DatabaseController.getCandidateName("+email+")");
 			firstname = statement1
 					.executeQuery("SELECT firstname FROM rzm_candidate WHERE email = '" + email + "';")
 					.getObject(1).toString();

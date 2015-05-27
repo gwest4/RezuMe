@@ -18,7 +18,7 @@ public class MatchProvider {
 		ArrayList<HashMap<String,String>> matches = new ArrayList<HashMap<String,String>>();
 		//System.out.println("results: "+results);
 		for (Entry<String,HashMap<String,String>> entry: results.entrySet()) {
-			entry.getValue().put("organization_id", entry.getKey());
+			entry.getValue().put("joblisting_id", entry.getKey());
 			matches.add(entry.getValue());
 		}
 		return matches;
