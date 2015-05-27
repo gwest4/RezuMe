@@ -10,7 +10,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 160em;
+  height: 170em;
+  font-family: 'Lato', sans-serif;
 }
 
 #header {
@@ -86,6 +87,15 @@ a:link {
   left: 6.7em;
 }
 
+.body-skills-text {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.5em;
+  text-align: center;
+  margin-left: -1em;
+}
+
 
 #body-WAPQuiz {
   padding-left: 2em;
@@ -103,6 +113,8 @@ a:link {
   color: black;
   font-family: 'Lato', sans-serif;
   font-size: 2em;
+  text-align: center;
+  margin-left: -1em;
 }
 
 #body-WAPQuiz-error {
@@ -124,6 +136,7 @@ input {
 }
 
 #submit-button {
+  float: none;
   background-color: #145597;
   border: solid;
   border-color: black;

@@ -108,8 +108,10 @@ public class CandidateWapServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				System.out.println("WAP question not answered");
 				htmlStringBuilder.append("<div id=\"body-WAPQuiz\">"+
-						"<p class=\"body-WAPQuiz-header\">Work Attitudinal Profile Quiz<br><br>"
-						+ "<span id=\"body-WAPQuiz-error\">One or more questions was not answered!</span></em></p>"+
+						"<p class=\"body-WAPQuiz-header\">Work Attitudinal Profile Quiz<br><br></p>");
+				htmlStringBuilder.append("<p class=\"body-skills-text\">Now it's time for you to assess your Work Attitudinal Profile.</p>\r\n\t\t\t<br>");
+				htmlStringBuilder.append("\r\n\t\t\t<p class=\"body-skills-text\">Please answer the following questions as self-reflection.<br><br>Remember, there is no correct answer. Different organizations are looking for different traits.</p>");
+				htmlStringBuilder.append("<span id=\"body-WAPQuiz-error\">One or more questions was not answered!</span></em></p>"+
 						"<form action=\"CandidateWapServlet\" method=\"post\">"+
 						"<div id=\"WAP-questions\">");
 				htmlStringBuilder.append(questions);
@@ -120,10 +122,12 @@ public class CandidateWapServlet extends HttpServlet {
 			String skills = request.getParameter("skills");
 			System.out.println("Setting newCandidateSkills to: " + skills);
 			DatabaseController.getInstance().updateCandidateSkills((String) session.getAttribute("currentNewCandidate"), skills);
-			htmlStringBuilder.append("<div id=\"body-WAPQuiz\">"+
-					"<p class=\"body-WAPQuiz-header\">Work Attitudinal Profile Quiz<br><br></em></p>"+
-					"<form action=\"CandidateWapServlet\" method=\"post\">"+
-					"<div id=\"WAP-questions\">");
+				htmlStringBuilder.append("<div id=\"body-WAPQuiz\">"+
+						"<p class=\"body-WAPQuiz-header\">Work Attitudinal Profile Quiz<br><br></p>");
+				htmlStringBuilder.append("<p class=\"body-skills-text\">Now it's time for you to assess your Work Attitudinal Profile.</p>\r\n\t\t\t<br>");
+				htmlStringBuilder.append("\r\n\t\t\t<p class=\"body-skills-text\">Please answer the following questions as self-reflection.<br><br>Remember, there is no correct answer; different organizations are looking for different traits.<br><br></p>");
+				htmlStringBuilder.append("<form action=\"CandidateWapServlet\" method=\"post\">"+
+						"<div id=\"WAP-questions\">");
 			htmlStringBuilder.append(questions);
 			htmlStringBuilder.append("<br><br><input id=\"submit-button\" type=\"submit\" name=\"Submit1\" value=\"Submit\">"
 					+"</div></form></div></div>");
