@@ -157,5 +157,16 @@
     <servlet-name>OrganizationWapServlet</servlet-name>
     <url-pattern>/OrganizationWapServlet</url-pattern>
   </servlet-mapping>
+  
+<!-- UploadFileServlet-->
+  <servlet>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <servlet-class>UploadFileServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping> 
+    <servlet-name>UploadFileServlet</servlet-name>
+    <url-pattern>/UploadFileServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>
