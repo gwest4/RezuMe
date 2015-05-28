@@ -29,6 +29,7 @@ public class UploadFileServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
     	
+//*/
     	response.setContentType("text/html");
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
@@ -37,6 +38,7 @@ public class UploadFileServlet extends HttpServlet {
     	htmlStringBuilder.append(HtmlProvider.getInstance().getHtmlCandidateSkillSortHead(""));
     	
     	htmlStringBuilder.append("<html>\r\n\t<form action=\"UploadFileServlet\" method=\"post\" enctype=\"multipart/form-data\">\t\r\n\t\tSelect file to upload: <input id=\"choose-file-button\" type=\"file\" value=\"Choose file\">\r\n\t\t<br/><br/>\r\n\t\t<input id=\"confirm-file-button\" type=\"submit\" value=\"submit\" >\r\n\t</form>\r\n</html>");
+//*/
     	// checks if the request actually contains upload file
     	if (!ServletFileUpload.isMultipartContent(request)) {
     	    PrintWriter writer = response.getWriter();
@@ -79,11 +81,17 @@ public class UploadFileServlet extends HttpServlet {
                       item.write(storeFile);
                   }
               }
-              request.setAttribute("message", "Upload successful!");
+              System.out.println("Upload successful!");
+	      log("Upload successful!");
           } catch (Exception ex) {
-              request.setAttribute("message", "There was an error: " + ex.getMessage());
+              System.out.println("Upload not successful");
+	      log("Upload not successful");
           }
-          getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
+         // getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
+         
+	SignInServlet servletObject = new SignInServlet();
+	servletObject.doPost(request, response);
+	response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)+ "/RezuMe/SignInServlet");
     }
    public void doGet(HttpServletRequest request,
        HttpServletResponse response) throws ServletException, IOException {
