@@ -16,7 +16,7 @@ import java.util.Map.Entry;
 
 public class MatchProvider {
 	private static final double MAX_DELTA = 18; //the worst case WAP delta
-	private static final double MATCH_THRESHOLD = 0.5; //only show candidates matches with % >= threshold
+	private static final double MATCH_THRESHOLD = 0.0; //only show candidates matches with % >= threshold
 	
 	private static double getWapMatch(String candidate_wap, String joblisting_wap) {
 		double delta = 0.0; //the added distance between all WAP scores
@@ -88,10 +88,10 @@ public class MatchProvider {
 			double skillsMatch = getSkillsMatch(candidate_skills, entry.getValue().get("skills"));
 			double match = (wapMatch + skillsMatch)/2.0;
 			
-			//if (match > MATCH_THRESHOLD) {
+			if (match > MATCH_THRESHOLD) {
 				entry.getValue().put("percentage", String.valueOf( (int)(match*100.0) ));
 				matches.add(entry.getValue());
-			//}
+			}
 		}
 		
 		//using a custom comparator! See "provider.JoblistingHashMapComparator" for info/code
