@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,8 +24,10 @@ public class EditProfileServlet extends HttpServlet {
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("edit-profile.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
 		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+		
+		HashMap<String,String> profileData = DatabaseController.getInstance().getCandidateProfileData((String) session.getAttribute("currentUser"));
 		htmlStringBuilder.append("<p class=\"body-text-text\">Editing profile for <strong>" + 
-				DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
+				profileData.get("firstname") + " " + profileData.get("lastname") +
 				"</strong></p>");
 		htmlStringBuilder.append(
 				"\r\n<form class=\"form\" action=\"EditProfileConfirmationServlet\" method=\"post\">"
@@ -33,13 +36,13 @@ public class EditProfileServlet extends HttpServlet {
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"password2\">Confirm password </label>"
 					+ "\r\n    <input id=\"password2\" class=\"textbox\" type=\"text\" name=\"password2\" size=\"30\"><br><br>"
 					+ "\r\n\t<label class=\"label-text\" for=\"email\">Email </label>"
-					+ "\r\n    <input id=\"email\" class=\"textbox\" type=\"text\" name=\"email\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"email\" class=\"textbox\" type=\"text\" name=\"email\" size=\"30\" value=\""+ "" +"\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"address\">Address </label>"
-					+ "\r\n    <input id=\"address\" class=\"textbox\" type=\"text\" name=\"address\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"address\" class=\"textbox\" type=\"text\" name=\"address\" size=\"30\" value=\""+ "" +"\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"city\">City </label>"
-					+ "\r\n    <input id=\"city\" class=\"textbox\" type=\"text\" name=\"city\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"city\" class=\"textbox\" type=\"text\" name=\"city\" size=\"30\" value=\""+"" +"\"><br><br>"
 					+ "<label class=\"label-text\" for=\"state\">State </label>"
-				    + "<select id=\"state\" name=\"state\">"
+				    + "<select id=\"state\" name=\"state\" value=\""+"" +"\">"
 				    	+ "<option value=\"AL\">Alabama</option>\r\n<option value=\"AK\">Alaska</option>\r\n"
 				        + "<option value=\"AZ\">Arizona</option>\r\n<option value=\"AR\">Arkansas</option>\r\n<option value=\"CA\">California</option>\r\n"
 				        + "<option value=\"CO\">Colorado</option>\r\n<option value=\"CT\">Connecticut</option>\r\n<option value=\"DE\">Delaware</option>\r\n"
@@ -59,9 +62,9 @@ public class EditProfileServlet extends HttpServlet {
 				        + "<option value=\"WV\">West Virginia</option>\r\n<option value=\"WI\">Wisconsin</option>\r\n<option value=\"WY\">Wyoming</option>"
 			        + "</select><br><br>"
 			        + "\r\n\t\r\n\t<label class=\"label-text\" for=\"zip\">Zip </label>"
-					+ "\r\n    <input id=\"zip\" class=\"textbox\" type=\"text\" name=\"zip\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"zip\" class=\"textbox\" type=\"text\" name=\"zip\" size=\"30\" value=\""+"" +"\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"school\">School </label>"
-					+ "\r\n    <input id=\"school\" class=\"textbox\" type=\"text\" name=\"school\" size=\"30\"><br><br>");
+					+ "\r\n    <input id=\"school\" class=\"textbox\" type=\"text\" name=\"school\" size=\"30\" value=\""+"" +"\"><br><br>");
 		htmlStringBuilder.append("</select>");
 	    // Industry
 	    htmlStringBuilder.append("<label class=\"label-text\" for=\"industry\">Industry </label>");
@@ -76,7 +79,9 @@ public class EditProfileServlet extends HttpServlet {
 	    	log("WARNING: getIndustries() yielded null");
 	    }
 	    htmlStringBuilder.append("</select><br><br><br>");
-	    htmlStringBuilder.append("<input id=\"form-button\" type=\"submit\" value=\"Submit\">");
+	    htmlStringBuilder.append("<input id=\"form-button\" type=\"submit\" value=\"Submit\"></input></form>");
+	    htmlStringBuilder.append("<form class=\"form\" action=\"CandidateProfileServlet\" method=\"post\">");
+		htmlStringBuilder.append("<input id=\"form-button\" type=\"submit\" value=\"Cancel\"></form>");
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");
 		

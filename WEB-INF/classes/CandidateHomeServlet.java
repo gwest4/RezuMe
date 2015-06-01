@@ -53,7 +53,9 @@ public class CandidateHomeServlet extends HttpServlet {
 					+ "</tr></table>");
 			htmlStringBuilder.append("<form class=\"contact-form\" action=\"ContactServlet\" method=\"post\">"
 					+ "<input type=\"hidden\" name=\"job-listing-id\" value=\""+match.get("joblisting_id")+"\"></input>" 
-					+ "<input class=\"contact-button\" type=\"submit\" value=\"Contact\"></input></form>");
+					+ "<input class=\"contact-button\" type=\"submit\""
+						+ "value=\"Contact\"></input></form>");
+			htmlStringBuilder.append("<p id=\"match-percentage-text\">"+match.get("percentage")+"% match</p>");
 			htmlStringBuilder.append("</div>");
 		}
 		htmlStringBuilder.append("</div>");

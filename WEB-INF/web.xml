@@ -191,6 +191,17 @@
     <url-pattern>/OrganizationConfirmationServlet</url-pattern>
   </servlet-mapping>
   
+  <!-- CandidateProfileServlet-->
+  <servlet>
+    <servlet-name>CandidateProfileServlet</servlet-name>
+    <servlet-class>CandidateProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CandidateProfileServlet</servlet-name>
+    <url-pattern>/CandidateProfileServlet</url-pattern>
+  </servlet-mapping>
+  
   <!-- EditProfileServlet-->
   <servlet>
     <servlet-name>EditProfileServlet</servlet-name>

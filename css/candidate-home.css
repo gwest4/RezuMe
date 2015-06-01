@@ -136,7 +136,7 @@ a:link {
   padding: 0.5em;
   margin: 1em;
   margin-bottom: 1em;
-  background-color: #F4E6ED;
+  background-color: white;
   border-radius: 1em;
   
   font-family: 'Lato', sans-serif;
@@ -193,6 +193,14 @@ td {
   width: 8em;
   position: relative;
   top: -4em;
+}
+
+#match-percentage-text {
+  color: red;
+  text-align: center;
+  position: relative;
+  left: 20em;
+  width: 10em;
 }
 
 footer {

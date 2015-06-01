@@ -24,7 +24,7 @@ public class EditProfileConfirmationServlet extends HttpServlet {
 
 		String inputPassword1 = request.getParameter("password1");
 		String inputPassword2 = request.getParameter("password2");
-		System.out.println("inputPassword1: "+inputPassword1+"\ninputPassword2: "+inputPassword2);
+		//System.out.println("inputPassword1: "+inputPassword1+"\ninputPassword2: "+inputPassword2);
 		
 		if (	(inputPassword1 == null || inputPassword2 == null) ||
 				(inputPassword1.equals("null") ||inputPassword2.equals("null"))) {

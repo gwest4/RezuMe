@@ -10,7 +10,7 @@ import java.io.File;
 public class HtmlProvider {
 	private static HtmlProvider instance;
 	private static String htmlHeadString1 = "<!doctype html>\r\n<html>\r\n<head>\r\n\t"
-			+ "<meta charset=\"utf-8\">\r\n\t<title>RezuMe - Sign In</title>\r\n\t"
+			+ "<meta charset=\"utf-8\">\r\n\t<title>RezuMe - Internships, simplified</title>\r\n\t"
 			+ "<link rel=\"stylesheet\" href=\"css/html5reset.css\">\r\n\t";
 	private static String htmlHeadString2 = "<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' "
 			+ "type='text/css'>\r\n</head>\r\n<body>\r\n\t<div id=\"container\">\r\n\t\t"
@@ -28,8 +28,8 @@ public class HtmlProvider {
 	private static String navHeadString = "<div id=\"nav-header\">" +
 			"<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>" +
-			"<form class=\"nav-form\" action=\"EditProfileServlet\" method=\"post\">"
-			+ "<input class=\"nav-button\" type=\"submit\" value=\"Edit Profile\"></form>" +
+			"<form class=\"nav-form\" action=\"CandidateProfileServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Profile\"></form>" +
 			"<form class=\"nav-form\" action=\"AddReferencesServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Add References\"></form>" +
 			"<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\">"
