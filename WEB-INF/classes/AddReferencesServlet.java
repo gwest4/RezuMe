@@ -21,7 +21,7 @@ public class AddReferencesServlet extends HttpServlet {
 
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("add-references.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 		htmlStringBuilder.append("<p class=\"body-text-text\">"
 				+ "\r\n\tAdd a reference to give your profile added credibility:\r\n</p>"
 				+ "\r\n<form class=\"form\" action=\"AddReferencesConfirmationServlet\" method=\"post\">"
@@ -33,7 +33,7 @@ public class AddReferencesServlet extends HttpServlet {
 					+ "\r\n    <input id=\"email\" class=\"textbox\" type=\"text\" name=\"email\" size=\"30\" required><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"email\">Notes  </label><br>"
 					+ "\r\n    <textarea name=\"notes\" id=\"notes\" rows=\"15\" cols=\"50\"></textarea><br>"
-					+ "\r\n\r\n\t<input class=\"form-button\" type=\"submit\" value=\"Submit\">"
+					+ "\r\n\r\n\t<input class=\"submit-button\" type=\"submit\" value=\"Submit\">"
 				+ "\r\n</form>");
 		htmlStringBuilder.append("</div>");
 		

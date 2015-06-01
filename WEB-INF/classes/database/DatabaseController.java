@@ -363,6 +363,36 @@ public class DatabaseController {
 				+ name + "', '" + ein + "', '" + email + "', '" + password + "', '"
 				+ phone + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "');");
 	}
+	
+	public HashMap<String,String> getOrganizationProfileData(String email) {
+		HashMap<String,String> data = new HashMap<String,String>();
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			Connection connection =
+					DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+			connection.setAutoCommit(false);
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("SELECT * FROM rzm_organization WHERE email = '" + email + "';");
+			data.put("name", resultSet.getString("name"));
+			data.put("email", resultSet.getString("email"));
+			data.put("address", resultSet.getString("address"));
+			data.put("city", resultSet.getString("city"));
+			data.put("state", resultSet.getString("state"));
+			data.put("zip", resultSet.getString("zip"));
+			data.put("phone", resultSet.getString("phone"));
+			statement.close();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+
+		return data;
+	}
 
 	public String getOrganizationId(String email) {
 		String id = null;

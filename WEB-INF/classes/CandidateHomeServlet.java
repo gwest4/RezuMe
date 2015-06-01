@@ -29,7 +29,7 @@ public class CandidateHomeServlet extends HttpServlet {
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("candidate-home.css"));
 
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + 
 				DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
 				"</strong><br><br>Here are your matches:</p>");

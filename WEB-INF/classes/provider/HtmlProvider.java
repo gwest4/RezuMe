@@ -25,13 +25,22 @@ public class HtmlProvider {
 			+ "DePaul University - Spring 2015 - Software Projects &copy; 2015 Team 2</p>\r\n"
 			+ "<center><img src=\"images/dpu-logo.png\" alt=\"\"></center>\r\n"
 			+ "</footer></body>\r\n</html>";
-	private static String navHeadString = "<div id=\"nav-header\">" +
+	private static String candidateNavBarString = "<div id=\"nav-header\">" +
 			"<form class=\"nav-form\" action=\"CandidateHomeServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>" +
 			"<form class=\"nav-form\" action=\"CandidateProfileServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Profile\"></form>" +
 			"<form class=\"nav-form\" action=\"AddReferencesServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Add References\"></form>" +
+			"<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>";
+	private static String organizationNavBarString = "<div id=\"nav-header\">" +
+			"<form class=\"nav-form\" action=\"OrganizationHomeServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Home\"></form>" +
+			"<form class=\"nav-form\" action=\"OrganizationProfileServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Profile\"></form>" +
+			"<form class=\"nav-form\" action=\"OrganizationNewJobServlet\" method=\"post\">"
+			+ "<input class=\"nav-button\" type=\"submit\" value=\"Add Job Posting\"></form>" +
 			"<form class=\"nav-form\" action=\"SignOutServlet\" method=\"post\">"
 			+ "<input class=\"nav-button\" type=\"submit\" value=\"Sign Out\"></form></div>";
 
@@ -100,7 +109,11 @@ public class HtmlProvider {
 		return htmlHeadString;
 	}
 	
-	public String getNavHead() {
-		return navHeadString;
+	public String getCandidateNavBarHead() {
+		return candidateNavBarString;
+	}
+	
+	public String getOrganizationNavBarHead() {
+		return organizationNavBarString;
 	}
 }

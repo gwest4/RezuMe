@@ -71,7 +71,7 @@ public class EditProfileConfirmationServlet extends HttpServlet {
 			if (email != null && !email.equals("")) session.setAttribute("currentUser", email);
 			
 			htmlStringBuilder.append("<div id=\"body-text\">");
-			htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+			htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 			htmlStringBuilder.append("<p class=\"body-text-header\">"
 					+ "\r\n\tYour profile has been updated.\r\n</p>"
 					+ "\r\n<p class=\"body-text-text\">"

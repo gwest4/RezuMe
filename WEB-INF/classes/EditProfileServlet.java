@@ -23,7 +23,7 @@ public class EditProfileServlet extends HttpServlet {
 
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("edit-profile.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 		
 		HashMap<String,String> profileData = DatabaseController.getInstance().getCandidateProfileData((String) session.getAttribute("currentUser"));
 		htmlStringBuilder.append("<p class=\"body-text-text\">Editing profile for <strong>" + 
@@ -32,9 +32,9 @@ public class EditProfileServlet extends HttpServlet {
 		htmlStringBuilder.append(
 				"\r\n<form class=\"form\" action=\"EditProfileConfirmationServlet\" method=\"post\">"
 					+ "\r\n\t<label class=\"label-text\" for=\"password1\">Password </label>"
-					+ "\r\n    <input id=\"password1\" class=\"textbox\" type=\"text\" name=\"password1\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"password1\" class=\"textbox\" type=\"password\" name=\"password1\" size=\"30\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"password2\">Confirm password </label>"
-					+ "\r\n    <input id=\"password2\" class=\"textbox\" type=\"text\" name=\"password2\" size=\"30\"><br><br>"
+					+ "\r\n    <input id=\"password2\" class=\"textbox\" type=\"password\" name=\"password2\" size=\"30\"><br><br>"
 					+ "\r\n\t<label class=\"label-text\" for=\"email\">Email </label>"
 					+ "\r\n    <input id=\"email\" class=\"textbox\" type=\"text\" name=\"email\" size=\"30\" value=\""+ "" +"\"><br><br>"
 					+ "\r\n\t\r\n\t<label class=\"label-text\" for=\"address\">Address </label>"
@@ -79,7 +79,7 @@ public class EditProfileServlet extends HttpServlet {
 	    	log("WARNING: getIndustries() yielded null");
 	    }
 	    htmlStringBuilder.append("</select><br><br><br>");
-	    htmlStringBuilder.append("<input id=\"form-button\" type=\"submit\" value=\"Submit\"></input></form>");
+	    htmlStringBuilder.append("<input id=\"submit-button\" type=\"submit\" value=\"Submit\"></input></form>");
 	    htmlStringBuilder.append("<form class=\"form\" action=\"CandidateProfileServlet\" method=\"post\">");
 		htmlStringBuilder.append("<input id=\"form-button\" type=\"submit\" value=\"Cancel\"></form>");
 		htmlStringBuilder.append("</div>");

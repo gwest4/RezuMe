@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CandidateProfileServlet extends HttpServlet {
+public class OrganizationProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -23,13 +23,12 @@ public class CandidateProfileServlet extends HttpServlet {
 
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("candidate-profile.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
+		htmlStringBuilder.append(HtmlProvider.getInstance().getOrganizationNavBarHead());
 		
-		HashMap<String,String> profileData = DatabaseController.getInstance().getCandidateProfileData((String) session.getAttribute("currentUser"));
+		HashMap<String,String> profileData = DatabaseController.getInstance().getOrganizationProfileData((String) session.getAttribute("currentUser"));
 		htmlStringBuilder.append("<p class=\"body-text-header\"><strong>" + 
-				profileData.get("firstname") + " " + profileData.get("lastname") +
-				"</strong>'s profile</p>");
-		htmlStringBuilder.append("<p class=\"body-text-text\">Candidate info:");
+				profileData.get("name") + "</strong>'s profile</p>");
+		htmlStringBuilder.append("<p class=\"body-text-text\">Organization info:");
 		htmlStringBuilder.append("\r\n<table id=\"profile-table\">\r\n\t"
 				+ "<tr>\r\n\t\t"
 				+ "<th>Email</th><td>"+ profileData.get("email") +"</td>\r\n\t</tr>\r\n\t"
@@ -43,10 +42,6 @@ public class CandidateProfileServlet extends HttpServlet {
 				+ "<th>Zip</th><td>"+ profileData.get("zip") +"</td>\r\n\t</tr>\r\n\t"
 				+ "<tr>\r\n\t\t"
 				+ "<th>Phone</th><td>"+ profileData.get("phone") +"</td>\r\n\t</tr>\r\n\t"
-				+ "<tr>\r\n\t\t"
-				+ "<th>School</th><td>"+ profileData.get("school") +"</td>\r\n\t</tr>\r\n\t"
-				+ "<tr>\r\n\t\t"
-				+ "<th>Industry</th><td>"+ profileData.get("industry") +"</td>\r\n\t</tr>\r\n"
 				+ "</table>\r\n");
 		htmlStringBuilder.append("<br><br>");
 		htmlStringBuilder.append("<form class=\"form\" action=\"EditProfileServlet\" method=\"post\">");

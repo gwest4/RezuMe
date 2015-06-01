@@ -1,5 +1,4 @@
 import database.DatabaseController;
-
 import provider.*;
 
 import java.io.*;
@@ -21,9 +20,10 @@ public class OrganizationNewJobServlet extends HttpServlet {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
-    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getHtmlHead("new-job.css"));
-    
+    StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("new-job.css"));
+
     htmlStringBuilder.append("<div id=\"body-signup\">");
+    htmlStringBuilder.append(HtmlProvider.getInstance().getOrganizationNavBarHead());
     htmlStringBuilder.append("<p class=\"body-signup-header\">New Job Listing<br><br></em></p>");
     htmlStringBuilder.append("<p class=\"body-signup-text\">* denotes a mandatory field.</p><br><br>");
     htmlStringBuilder.append("<form action=\"OrganizationNewJobSkillsServlet\" method=\"get\">");

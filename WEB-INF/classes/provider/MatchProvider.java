@@ -20,7 +20,10 @@ public class MatchProvider {
 	
 	private static double getWapMatch(String candidate_wap, String joblisting_wap) {
 		double delta = 0.0; //the added distance between all WAP scores
-		
+		if (candidate_wap == null || joblisting_wap == null) {
+			System.out.println("Could not compute WAP due to null string");
+			return 0;
+		}
 		if (candidate_wap.length() != joblisting_wap.length()) {
 			System.out.println("Could not compute WAP compatability due to unequal WAP string lengths");
 			return 0;
@@ -34,11 +37,15 @@ public class MatchProvider {
 				delta += Math.abs(i-j);
 			}
 		}
-		System.out.println("Delta of '"+candidate_wap+"' and '"+joblisting_wap+"': "+String.valueOf(delta));
+		//System.out.println("Delta of '"+candidate_wap+"' and '"+joblisting_wap+"': "+String.valueOf(delta));
 		return 1.0-(delta / MAX_DELTA);
 	}
 	
 	private static double getSkillsMatch(String candidate_skills, String joblisting_skills) {
+		if (candidate_skills == null || joblisting_skills == null) {
+			System.out.println("Could not compute skillsMatch due to null string");
+			return 0;
+		}
 		List<String> c_s = Arrays.asList(candidate_skills.split("\\,"));
 		List<String> j_s = Arrays.asList(joblisting_skills.split("\\,"));
 		double matches = 0.0;
@@ -50,7 +57,7 @@ public class MatchProvider {
 		}
 		
 		double skillsMatch = matches / max_possible;
-		System.out.println("Match of '"+c_s+"' and '"+j_s+"': "+String.valueOf(skillsMatch));
+		//System.out.println("Match of '"+c_s+"' and '"+j_s+"': "+String.valueOf(skillsMatch));
 		if (skillsMatch > 1.0)
 			return 1.0;
 		return skillsMatch;

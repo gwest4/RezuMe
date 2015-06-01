@@ -202,6 +202,17 @@
     <url-pattern>/CandidateProfileServlet</url-pattern>
   </servlet-mapping>
   
+  <!-- OrganizationProfileServlet-->
+  <servlet>
+    <servlet-name>OrganizationProfileServlet</servlet-name>
+    <servlet-class>OrganizationProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizationProfileServlet</servlet-name>
+    <url-pattern>/OrganizationProfileServlet</url-pattern>
+  </servlet-mapping>
+  
   <!-- EditProfileServlet-->
   <servlet>
     <servlet-name>EditProfileServlet</servlet-name>

@@ -21,7 +21,7 @@ public class ContactServlet extends HttpServlet {
 
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("contact.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
-		htmlStringBuilder.append(HtmlProvider.getInstance().getNavHead());
+		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");
 		
