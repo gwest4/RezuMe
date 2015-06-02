@@ -33,7 +33,7 @@ public class CandidateHomeServlet extends HttpServlet {
 		htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + 
 				DatabaseController.getInstance().getCandidateName((String) session.getAttribute("currentUser")) +
 				"</strong><br><br>Here are your matches:</p>");
-		ArrayList<HashMap<String,String>> matches = MatchProvider.getMatches((String) session.getAttribute("currentUser"));
+		ArrayList<HashMap<String,String>> matches = MatchProvider.getMatchesForCandidate((String) session.getAttribute("currentUser"));
 		htmlStringBuilder.append("\r\n<div id=\"match-box\">\r\n\t"+/*"Sorry, no matches at this time."+*/"\r\n");
 		for (HashMap<String,String> match : matches) {
 			htmlStringBuilder.append("<div id=\"match\">");

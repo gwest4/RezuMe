@@ -63,41 +63,41 @@ public class MatchProvider {
 		return skillsMatch;
 	}
 	
-	public static ArrayList<HashMap<String,String>> getMatches(String email) {
+	public static ArrayList<HashMap<String,String>> getMatchesForCandidate(String email) {
 		String candidate_wap = DatabaseController.getInstance().getCandidateWap(email);
 		String candidate_skills = DatabaseController.getInstance().getCandidateSkills(email);
-		HashMap<String, HashMap<String,String>> results = DatabaseController.getInstance().getJobListings();
+		ArrayList<HashMap<String,String>> jobListings = DatabaseController.getInstance().getJobListings();
 		/*
-		 * HashMap "results" looks like
-		 * { "joblisting_id": {	"organization_name": value,
-		 * 						"email": value,
-		 * 						"city": value,
-		 * 						"state": value,
-		 * 						"phone": value,
-		 * 						"industry_id": value,
-		 * 						"title": value,
-		 * 						"description": value,
-		 * 						"skills": value,
-		 * 						"wap": value,
-		 * 					  } ,
-		 *   "joblisting_id2: { "organization_name2": value2,
+		 *  ArrayList "results" looks like
+		 * {  {	"joblisting_id": value,
+		 * 		"organization_name": value,
+		 * 		"email": value,
+		 * 		"city": value,
+		 * 		"state": value,
+		 * 		"phone": value,
+		 * 		"industry_id": value,
+		 * 		"title": value,
+		 * 		"description": value,
+		 * 		"skills": value,
+		 * 		"wap": value	} ,
+		 *    { "joblisting_id2": value2,
 		 *   					...
-		 *   				  }
+		 *   				  	} ,
 		 *   ...
 		 * }
 		 */
 		ArrayList<HashMap<String,String>> matches = new ArrayList<HashMap<String,String>>();
 		//System.out.println("results: "+results);
 		
-		for (Entry<String,HashMap<String,String>> entry: results.entrySet()) {
-			//calulate WAP match
-			double wapMatch = getWapMatch(candidate_wap, entry.getValue().get("wap"));
-			double skillsMatch = getSkillsMatch(candidate_skills, entry.getValue().get("skills"));
+		for (HashMap<String,String> job: jobListings) {
+			//calulate match
+			double wapMatch = getWapMatch(candidate_wap, job.get("wap"));
+			double skillsMatch = getSkillsMatch(candidate_skills, job.get("skills"));
 			double match = (wapMatch + skillsMatch)/2.0;
 			
 			if (match > MATCH_THRESHOLD) {
-				entry.getValue().put("percentage", String.valueOf( (int)(match*100.0) ));
-				matches.add(entry.getValue());
+				job.put("percentage", String.valueOf( (int)(match*100.0) ));
+				matches.add(job);
 			}
 		}
 		
@@ -105,4 +105,25 @@ public class MatchProvider {
 		matches.sort(new JoblistingHashMapComparator());
 		return matches;
 	}
+		
+	public static HashMap<String, HashMap<String,String>> getMatchesForOrganization(String email) {
+		ArrayList<HashMap<String,String>> jobListings = DatabaseController.getInstance().getJobListings(email);
+		ArrayList<HashMap<String,String>> candidates = DatabaseController.getInstance().getCandidates();
+
+		ArrayList<HashMap<String,String>> matches = new HashMap<String, HashMap<String,String>>();
+		System.out.println("jobListings: "+jobListings);
+		for (HashMap<String,String> job: jobListings) {
+			//calulate match
+			double wapMatch = getWapMatch(candidate_wap, job.get("wap"));
+			double skillsMatch = getSkillsMatch(candidate_skills, job.get("skills"));
+			double match = (wapMatch + skillsMatch)/2.0;
+			
+			if (match > MATCH_THRESHOLD) {
+				job.put("percentage", String.valueOf( (int)(match*100.0) ));
+				matches.add(job);
+			}
+		}
+		return matches;
+	}
+	
 }

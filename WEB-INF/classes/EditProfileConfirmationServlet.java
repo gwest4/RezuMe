@@ -18,6 +18,14 @@ public class EditProfileConfirmationServlet extends HttpServlet {
 		response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
+		String currentUserType;
+		if (session.getAttribute("candidateLoggedIn").equals("true")) {
+			currentUserType = "candidate";
+		} else if (session.getAttribute("organizationLoggedIn").equals("true")) {
+			currentUserType = "organization";
+		} else {
+			currentUserType = null;
+		}
 		
 		boolean isValid = true;
 		String errorMessage = "";
@@ -64,19 +72,34 @@ public class EditProfileConfirmationServlet extends HttpServlet {
 			String zip = request.getParameter("zip");
 			String school = request.getParameter("school");
 			String industry = request.getParameter("industry");
-			
-			DatabaseController.getInstance().updateCandidateProfile((String)session.getAttribute("currentUser"),
-					email, password, phone, address, city, state, zip, school, industry);
+			if (currentUserType.equals("candidate")) {
+				DatabaseController.getInstance().updateCandidateProfile((String)session.getAttribute("currentUser"),
+						email, password, phone, address, city, state, zip, school, industry);
+			} else {
+				DatabaseController.getInstance().updateOrganizationProfile((String)session.getAttribute("currentUser"),
+						email, password, phone, address, city, state, zip);
+			}
 			
 			if (email != null && !email.equals("")) session.setAttribute("currentUser", email);
 			
 			htmlStringBuilder.append("<div id=\"body-text\">");
-			htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
+			if (currentUserType.equals("candidate")) {
+				htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
+			} else {
+				htmlStringBuilder.append(HtmlProvider.getInstance().getOrganizationNavBarHead());
+			}
+			
 			htmlStringBuilder.append("<p class=\"body-text-header\">"
 					+ "\r\n\tYour profile has been updated.\r\n</p>"
 					+ "\r\n<p class=\"body-text-text\">"
 					+ "\r\n\tClick the button below to return to your home page.\r\n</p>"
-					+ "\r\n<form class=\"form\" action=\"CandidateHomeServlet\" method=\"post\">"
+					+ "\r\n<form class=\"form\" action=\"");
+			if (currentUserType.equals("candidate")) {
+				htmlStringBuilder.append("CandidateHomeServlet");
+			} else {
+				htmlStringBuilder.append("OrganizationHomeServlet");
+			}
+			htmlStringBuilder.append("\" method=\"post\">"
 					+ "\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Home\">"
 					+ "\r\n</form>");
 			htmlStringBuilder.append("</div>");

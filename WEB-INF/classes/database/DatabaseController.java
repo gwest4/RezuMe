@@ -126,6 +126,44 @@ public class DatabaseController {
 
 		return data;
 	}
+	
+	public ArrayList<HashMap<String,String>> getCandidates() {
+		ArrayList<HashMap<String,String>> candidates = new ArrayList<HashMap<String,String>>();
+		try {
+			Class.forName("org.sqlite.JDBC");
+			Connection connection =
+					DriverManager.getConnection("jdbc:sqlite:webapps/RezuMe/database/rezume_db1.db");
+			connection.setAutoCommit(false);
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("SELECT * FROM rzm_candidate;");
+			HashMap<String,String> candidate = new HashMap<String,String>();
+			while (resultSet.next()) {
+				candidate.put("firstname", resultSet.getString("firstname"));
+				candidate.put("lastname", resultSet.getString("lastname"));
+				candidate.put("email", resultSet.getString("email"));
+				candidate.put("address", resultSet.getString("address"));
+				candidate.put("city", resultSet.getString("city"));
+				candidate.put("state", resultSet.getString("state"));
+				candidate.put("zip", resultSet.getString("zip"));
+				candidate.put("phone", resultSet.getString("phone"));
+				candidate.put("school", resultSet.getString("school"));
+				candidate.put("industry", resultSet.getString("industry_id"));
+				candidate.put("wap", resultSet.getString("wap"));
+				candidate.put("skills", resultSet.getString("skills"));
+				candidates.add(candidate);
+			}
+			statement.close();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+
+		return candidates;
+	}
 
 	public String getCandidateId(String email) {
 		String id = null;
@@ -467,10 +505,33 @@ public class DatabaseController {
 	
 		return password;
 	}
+	
+	public void updateOrganizationProfile(String currentUser, String email, String password, String phone,
+			String address, String city, String state, String zip) {
+			StringBuilder values = new StringBuilder();
+			if (email != null && !email.equals("")) values.append("email='"+email+"', ");
+			if (password != null && !password.equals("")) values.append("password='"+password+"', ");
+			if (phone != null && !phone.equals("")) values.append("phone='"+phone+"', ");
+			if (address != null && !address.equals("")) values.append("address='"+address+"', ");
+			if (city != null && !city.equals("")) values.append("city='"+city+"', ");
+			if (state != null && !state.equals("")) values.append("state='"+state+"', ");
+			if (zip != null && !zip.equals("")) values.append("zip='"+zip+"', ");
+			String query_part = values.substring(0, values.length()-2);
+			//System.out.println("queryPart: "+query_part);
+			executeInsertUpdate("UPDATE rzm_organization SET " +query_part+ " WHERE email = '" + currentUser + "';");
+		}
 
-	public HashMap<String, HashMap<String,String>> getJobListings() {
-		HashMap<String, HashMap<String,String>> jobListings = new HashMap<String, HashMap<String,String>>();
-		HashMap<String,String> attributes;
+	public ArrayList<HashMap<String,String>> getJobListings() {
+		return getJobListings(null);
+	}
+	
+	public ArrayList<HashMap<String,String>> getJobListings(String email) {
+		ArrayList<HashMap<String,String>> jobListings = new ArrayList<HashMap<String,String>>();
+		HashMap<String,String> job;
+		String organization_id = "";
+		if (email != null) {
+			organization_id = getInstance().getOrganizationId(email);
+		}
 		try {
 			Class.forName("org.sqlite.JDBC");
 			Connection connection =
@@ -478,27 +539,41 @@ public class DatabaseController {
 			connection.setAutoCommit(false);
 	
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM rzm_joblisting;");
-			while (resultSet.next()) {
-				Statement statement2 = connection.createStatement();
-				ResultSet resultSet2 = statement2.executeQuery("SELECT * from rzm_organization WHERE organization_id = "
-						+ resultSet.getString("organization_id") + ";");
-				attributes = new HashMap<String,String>();
-				attributes.put("organization_name", resultSet2.getString("name"));
-				attributes.put("email", resultSet2.getString("email"));
-				attributes.put("city", resultSet2.getString("city"));
-				attributes.put("state", resultSet2.getString("state"));
-				attributes.put("phone", resultSet2.getString("phone"));
-				attributes.put("industry_id", resultSet.getString("industry_id"));
-				attributes.put("title", resultSet.getString("title"));
-				attributes.put("description", resultSet.getString("description"));
-				attributes.put("skills", resultSet.getString("skills"));
-				attributes.put("wap", resultSet.getString("wap"));
-				attributes.put("joblisting_id", resultSet.getString("joblisting_id"));
-				jobListings.put(resultSet.getString("joblisting_id"),attributes);
-				statement2.close();
+			if (email == null) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM rzm_joblisting;");
+				while (resultSet.next()) {
+					Statement statement2 = connection.createStatement();
+					ResultSet resultSet2 = statement2.executeQuery("SELECT * from rzm_organization WHERE organization_id = "
+							+ resultSet.getString("organization_id") + ";");
+					job = new HashMap<String,String>();
+					job.put("organization_name", resultSet2.getString("name"));
+					job.put("email", resultSet2.getString("email"));
+					job.put("city", resultSet2.getString("city"));
+					job.put("state", resultSet2.getString("state"));
+					job.put("phone", resultSet2.getString("phone"));
+					job.put("industry_id", resultSet.getString("industry_id"));
+					job.put("title", resultSet.getString("title"));
+					job.put("description", resultSet.getString("description"));
+					job.put("skills", resultSet.getString("skills"));
+					job.put("wap", resultSet.getString("wap"));
+					job.put("joblisting_id", resultSet.getString("joblisting_id"));
+					jobListings.add(job);
+					statement2.close();
+				}
+			} else {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM rzm_joblisting WHERE organization_id = "
+							+ organization_id + ";");
+				while (resultSet.next()) {
+					job = new HashMap<String,String>();
+					job.put("industry_id", resultSet.getString("industry_id"));
+					job.put("title", resultSet.getString("title"));
+					job.put("description", resultSet.getString("description"));
+					job.put("skills", resultSet.getString("skills"));
+					job.put("wap", resultSet.getString("wap"));
+					job.put("joblisting_id", resultSet.getString("joblisting_id"));
+					jobListings.add(job);
+				}
 			}
-	
 			statement.close();
 			connection.close();
 		} catch (Exception e) {
@@ -509,21 +584,21 @@ public class DatabaseController {
 	
 		return jobListings;
 		/*
-		 * what the returned HashMap looks like
-		 * { "joblisting_id": {	"organization_name": value,
-		 * 						"email": value,
-		 * 						"city": value,
-		 * 						"state": value,
-		 * 						"phone": value,
-		 * 						"industry_id": value,
-		 * 						"title": value,
-		 * 						"description": value,
-		 * 						"skills": value,
-		 * 						"wap": value,
-		 * 					  } ,
-		 *   "joblisting_id2: { "organization_name2": value2,
+		 * what the returned ArrayList looks like
+		 * {  {	"joblisting_id": value,
+		 * 		"organization_name": value,
+		 * 		"email": value,
+		 * 		"city": value,
+		 * 		"state": value,
+		 * 		"phone": value,
+		 * 		"industry_id": value,
+		 * 		"title": value,
+		 * 		"description": value,
+		 * 		"skills": value,
+		 * 		"wap": value	} ,
+		 *    { "joblisting_id2": value2,
 		 *   					...
-		 *   				  }
+		 *   				  	} ,
 		 *   ...
 		 * }
 		 */
