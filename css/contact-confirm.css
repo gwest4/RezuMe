@@ -9,7 +9,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 70em;
+  height: 46em;
 }
 
 #header {
@@ -67,6 +67,7 @@ a:link {
 
 .nav-form {
   display: inline-block;
+  margin-top: 1.7em;
 }
 
 #nav-header {
@@ -96,8 +97,7 @@ a:link {
 #body-text {
   text-align: center;
   float: left;
-  position: absolute;
-  top: 130px;
+  margin-top: -5em;
 }
 
 .body-text-header {
@@ -113,80 +113,34 @@ a:link {
   font-weight: 300;
   font-size: 1.5em;
   text-align: center;
-  padding-top: 1em;
+  padding-top: 3em;
   padding-bottom: 3em;
   padding-left: 7em;
   padding-right: 7em;
   line-height: 1.3em;
 }
 
-.nav-form {
-  display: inline-block;
+#return-link:link {
+  color: blue;
+  text-decoration: none;
 }
 
-#match-box{
-  overflow: scroll;
-  margin-left: 7em;
-  margin-right: 7em;
-  background-color: #EBCFD7;
-  
-  text-align: center;
-  line-height: 1.3em;
-  max-height: 65em;
+#return-link:visited {
+  color: blue;
+  text-decoration: none;
 }
-
-#match {
-  padding: 0.5em;
-  margin: 1em;
-  margin-bottom: 1em;
-  background-color: white;
-  border-radius: 1em;
-  
+#return-text {
   font-family: 'Lato', sans-serif;
-  font-size: 1em;
-}
-
-table {
-  table-layout: fixed;
-  text-align: left;
-  border-spacing: 1em 0.5em;
-  border-collapse: separate;
-  width: 36em;
-}
-
-.table-header {
-  font-weight: bold;
-}
-
-th {
-  word-wrap: break-word;
-  width: 6.4em;
-  font-size: 1em;
-}
-
-td {
-  word-wrap: break-word;
-  width: 6.5em;
-  font-size: 0.9em;
-}
-
-.long {
-  width: 8em;
-}
-
-.contact-form {
-  
-}
-
-#match-percentage-text {
-  color: red;
+  font-weight: 400;
+  font-size: 1.3em;
   text-align: center;
-  position: relative;
-  left: 20em;
-  width: 10em;
 }
 
-.contact-button {
+#icons {
+  margin-left: 1.8em;
+}
+
+#submit-button {
   background-color: #145597;
   border: solid;
   border-color: black;
@@ -198,8 +152,7 @@ td {
   font-weight: bold;
   color: white;
   height: 3em;
-  width: 7em;
-  margin-left: 2.5em;
+  width: 10em;
 }
 
 footer {

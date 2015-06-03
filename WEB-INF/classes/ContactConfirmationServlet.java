@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class ContactServlet extends HttpServlet {
+public class ContactConfirmationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -19,15 +19,17 @@ public class ContactServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 
-		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("contact.css"));
+		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("contact-confirm.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
 		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
-		htmlStringBuilder.append("<p class=\"body-text-text\">"
-				+ "\r\n\tTime to set up the connection.\r\n</p>"
-				+ "\r\n<form class=\"form\" action=\"ContactConfirmationServlet\" method=\"post\">"
-					+ "<label class=\"label-text\" for=\"email\">Add your message below.</label><br><br>"
-					+ "\r\n    <textarea name=\"notes\" id=\"notes\" rows=\"15\" cols=\"50\"></textarea><br>"
-					+ "\r\n\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Submit\">"
+		htmlStringBuilder.append("<p class=\"body-text-header\">"
+				+ "\r\n\t<br>You have pinged your requested contact.\r\n</p>"
+				+ "\r\n<p class=\"body-text-text\">"
+				+ "\r\n\tPlease allow the contact to receieve, view, and respond to your ping.<br>"
+				+ "<br>Also, please note that all communication from this point forward will be handled outside of RezuMe.<br>"
+				+ "\r\n\t<br>Click the button below to return to your home page.\r\n</p>"
+				+ "\r\n<form class=\"form\" action=\"CandidateHomeServlet\" method=\"post\">"
+				+ "\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Home\">"
 				+ "\r\n</form>");
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");

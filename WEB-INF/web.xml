@@ -268,4 +268,14 @@
     <url-pattern>/ContactServlet</url-pattern>
   </servlet-mapping>
   
+  <!-- ContactConfirmationServlet-->
+  <servlet>
+    <servlet-name>ContactConfirmationServlet</servlet-name>
+    <servlet-class>ContactConfirmationServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ContactConfirmationServlet</servlet-name>
+    <url-pattern>/ContactConfirmationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
