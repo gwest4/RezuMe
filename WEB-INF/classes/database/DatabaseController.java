@@ -138,8 +138,9 @@ public class DatabaseController {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement
 					.executeQuery("SELECT * FROM rzm_candidate;");
-			HashMap<String,String> candidate = new HashMap<String,String>();
+			HashMap<String,String> candidate;
 			while (resultSet.next()) {
+			    candidate = new HashMap<String,String>();
 				candidate.put("firstname", resultSet.getString("firstname"));
 				candidate.put("lastname", resultSet.getString("lastname"));
 				candidate.put("email", resultSet.getString("email"));

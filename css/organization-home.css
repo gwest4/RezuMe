@@ -124,6 +124,68 @@ a:link {
   display: inline-block;
 }
 
+#match-box{
+  overflow: scroll;
+  margin-left: 7em;
+  margin-right: 7em;
+  background-color: #EBCFD7;
+  
+  text-align: center;
+  line-height: 1.3em;
+  max-height: 65em;
+}
+
+#match {
+  padding: 0.5em;
+  margin: 1em;
+  margin-bottom: 1em;
+  background-color: white;
+  border-radius: 1em;
+  
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+}
+
+table {
+  table-layout: fixed;
+  text-align: left;
+  border-spacing: 1em 0.5em;
+  border-collapse: separate;
+  width: 36em;
+}
+
+.table-header {
+  font-weight: bold;
+}
+
+th {
+  word-wrap: break-word;
+  width: 6.4em;
+  font-size: 1em;
+}
+
+td {
+  word-wrap: break-word;
+  width: 6.5em;
+  font-size: 0.9em;
+}
+
+.long {
+  width: 8em;
+}
+
+.contact-form {
+  
+}
+
+#match-percentage-text {
+  color: red;
+  text-align: center;
+  position: relative;
+  left: 20em;
+  width: 10em;
+}
+
 footer {
   background-color: #33292E;
   margin-left: auto;

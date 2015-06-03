@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 /**
  * OrganizationHomeServlet.
@@ -29,29 +30,35 @@ public class OrganizationHomeServlet extends HttpServlet {
     htmlStringBuilder.append(HtmlProvider.getInstance().getOrganizationNavBarHead());
     htmlStringBuilder.append("<p class=\"body-text-text\">Signed in as <strong>" + profileData.get("name") +
     		"</strong><br><br>Here are your matches:</p>");
-    ArrayList<HashMap<String,String>> matches = MatchProvider.getMatchesForOrganization((String) session.getAttribute("currentUser"));
+    HashMap<HashMap<String,String>, ArrayList<HashMap<String,String>>> matches =
+		MatchProvider.getMatchesForOrganization((String) session.getAttribute("currentUser"));
 	htmlStringBuilder.append("\r\n<div id=\"match-box\">\r\n\t"+/*"Sorry, no matches at this time."+*/"\r\n");
-	for (HashMap<String,String> match : matches) {
-		htmlStringBuilder.append("<div id=\"match\">");
+	//System.out.println("matches: "+matches);
+	for (Entry<HashMap<String,String>, ArrayList<HashMap<String,String>>> entry : matches.entrySet()) {
+		htmlStringBuilder.append("<div id=\"match\">"
+			+ "<p>"+entry.getKey().get("title")+"</p>");
 		htmlStringBuilder.append("<table id=\"match-table\">"
-				+ "<tr class=\"table-header\">"
-				+ "<th>Organization</td>"
-				+ "<th>Job Title</td>"
-				+ "<th class=\"long\">Job Description</td>"
-				+ "<th>Location</td>"
-				+ "<th>Phone</td>"
-				+ "</tr><tr>"
-				+ "<td>"+match.get("organization_name")+"</td>"
-				+ "<td>"+match.get("title")+"</td>"
-				+ "<td class=\"long\">"+match.get("description")+"</td>"
-				+ "<td>"+match.get("city")+", "+match.get("state")+"</td>"
-				+ "<td class=\"long\">"+match.get("phone")+"</td>"
-				+ "</tr></table>");
-		htmlStringBuilder.append("<form class=\"contact-form\" action=\"ContactServlet\" method=\"post\">"
-				+ "<input type=\"hidden\" name=\"job-listing-id\" value=\""+match.get("joblisting_id")+"\"></input>" 
+			+ "<tr class=\"table-header\">"
+			+ "<th>Name</th>"
+			+ "<th>Location</th>"
+			+ "<th>Phone</th>"
+			+ "<th></th>"
+			+ "<th></th>"
+			+ "</tr>");
+		for (HashMap<String,String> candidate: entry.getValue()) {
+			htmlStringBuilder.append("<tr>"
+				+ "<td>"+candidate.get("firstname")+" "+candidate.get("lastname")+"</td>"
+				+ "<td>"+candidate.get("city")+", "+candidate.get("state")+"</td>"
+				+ "<td class=\"long\">"+candidate.get("phone")+"</td>"
+				+ "<td id=\"match-percentage-text\">"+candidate.get("percentage")+"% match</td>");
+			htmlStringBuilder.append("<td><form class=\"contact-form\" action=\"ContactServlet\" method=\"post\">"
+				+ "<input type=\"hidden\" name=\"job-listing-id\" value=\""+candidate.get("candidate_id")
+					+ "\"></input>" 
 				+ "<input class=\"contact-button\" type=\"submit\""
-					+ "value=\"Contact\"></input></form>");
-		htmlStringBuilder.append("<p id=\"match-percentage-text\">"+match.get("percentage")+"% match</p>");
+					+ "value=\"Contact\"></input></form></td>");
+			htmlStringBuilder.append("</tr>");
+		}
+		htmlStringBuilder.append("</table>");
 		htmlStringBuilder.append("</div>");
 	}
 	htmlStringBuilder.append("</div>");

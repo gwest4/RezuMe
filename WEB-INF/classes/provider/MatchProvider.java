@@ -106,22 +106,41 @@ public class MatchProvider {
 		return matches;
 	}
 		
-	public static HashMap<String, HashMap<String,String>> getMatchesForOrganization(String email) {
+	public static HashMap< HashMap<String,String>, ArrayList<HashMap<String,String>> >
+			getMatchesForOrganization(String email) {
 		ArrayList<HashMap<String,String>> jobListings = DatabaseController.getInstance().getJobListings(email);
 		ArrayList<HashMap<String,String>> candidates = DatabaseController.getInstance().getCandidates();
 
-		ArrayList<HashMap<String,String>> matches = new HashMap<String, HashMap<String,String>>();
-		System.out.println("jobListings: "+jobListings);
+		HashMap< HashMap<String,String>, ArrayList<HashMap<String,String>> > matches
+			= new HashMap< HashMap<String,String>, ArrayList<HashMap<String,String>> >();
+		ArrayList<HashMap<String,String>> currentJobMatches;
+		//System.out.println("candidates: "+candidates);
+		double wapMatch, skillsMatch, match;
 		for (HashMap<String,String> job: jobListings) {
 			//calulate match
-			double wapMatch = getWapMatch(candidate_wap, job.get("wap"));
-			double skillsMatch = getSkillsMatch(candidate_skills, job.get("skills"));
-			double match = (wapMatch + skillsMatch)/2.0;
-			
-			if (match > MATCH_THRESHOLD) {
-				job.put("percentage", String.valueOf( (int)(match*100.0) ));
-				matches.add(job);
+			currentJobMatches = new ArrayList<HashMap<String,String>>();
+			for (HashMap<String,String> candidate: candidates) {
+				candidate = (HashMap<String,String>) candidate.clone();
+				wapMatch = getWapMatch(candidate.get("wap"), job.get("wap"));
+				// System.out.println("wapMatch: " +
+					// job.get("title")+"/"+candidate.get("firstname")+" "+candidate.get("lastname")+"\n\t" +
+					// "candidate_wap: "+candidate.get("wap")+" job_wap: "+job.get("wap")+" match: "+wapMatch);
+				skillsMatch = getSkillsMatch(candidate.get("skills"), job.get("skills"));
+				// System.out.println("skillsMatch: " +
+					// job.get("title")+"/"+candidate.get("firstname")+" "+candidate.get("lastname")+"\n\t" +
+					// "candidate_skills: "+candidate.get("skills")+" job_skills: "+job.get("skills")+" match: "+skillsMatch);
+				match = (wapMatch + skillsMatch)/2.0;
+				// System.out.println("match: " +
+					// job.get("title")+"/"+candidate.get("firstname")+" "+candidate.get("lastname")+"\n\t" +
+					// "match: "+String.valueOf(match));
+				if (match > MATCH_THRESHOLD) {
+					candidate.put("percentage", String.valueOf( (int)(match*100.0) ));
+					currentJobMatches.add(candidate);
+					//System.out.println("adding matched candidate: "+candidate.get("firstname")+" "+candidate.get("lastname"));
+				}
 			}
+			matches.put(job, currentJobMatches);
+			//System.out.println("matches: "+matches);
 		}
 		return matches;
 	}
