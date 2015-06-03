@@ -19,13 +19,21 @@ public class AddReferencesConfirmationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 
+		String candidateEmail = (String) session.getAttribute("currentUser");
+		String firstName = request.getParameter("firstname");
+		String lastName = request.getParameter("lastname");
+		String email = request.getParameter("email");
+		String notes = request.getParameter("notes");
+
+		DatabaseController.getInstance().addReference(candidateEmail, firstName, lastName, email, notes);
+
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("add-references.css"));
 		htmlStringBuilder.append("<div id=\"body-text\">");
 		htmlStringBuilder.append(HtmlProvider.getInstance().getCandidateNavBarHead());
 		htmlStringBuilder.append("<p class=\"body-text-header\">"
-				+ "\r\n\tYour reference has been added to your profile.\r\n</p>"
+				+ "\r\n\t<br>Your reference has been added to your profile.\r\n</p>"
 				+ "\r\n<p class=\"body-text-text\">"
-				+ "\r\n\tKeep in mind that contacts may be contacted by an Organization at any time.<br><br>"
+				+ "\r\n\t<br><br>Keep in mind that contacts may be contacted by an Organization at any time.<br><br>"
 				+ "\r\n\tClick the button below to return to your home page.\r\n</p><br><br>"
 				+ "\r\n<form class=\"form\" action=\"CandidateHomeServlet\" method=\"post\">"
 				+ "\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Home\">"

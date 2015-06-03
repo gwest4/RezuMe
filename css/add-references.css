@@ -9,7 +9,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 66.5em;
-  height: 87em;
+  height: 50em;
 }
 
 #header {
@@ -123,6 +123,19 @@ a:link {
   
 }
 
+label {
+  line-height: 2em;
+  width: 10em;
+  display: inline-block;
+}
+
+.label-text {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+
 #submit-button {
   background-color: #145597;
   border: solid;
@@ -136,7 +149,7 @@ a:link {
   color: white;
   height: 3em;
   width: 10em;
-  margin-left: 2.5em;
+  margin-top: 2em;
 }
 
 footer {

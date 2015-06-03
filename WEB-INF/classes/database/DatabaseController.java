@@ -758,4 +758,17 @@ public class DatabaseController {
 		return industryName;
 	}
 
+	public void addReference(String candidateEmail, String firstName, String lastName, String email,
+			String notes) {
+		String candidateId = getCandidateId(candidateEmail);
+		String fullName = firstName + " " + lastName;
+
+		System.out.println(candidateId);;
+		System.out.println(fullName);
+
+		executeInsertUpdate("INSERT INTO rzm_reference (candidate_id, name, email, notes) "
+				+ "VALUES ('" + candidateId + "', '" + fullName + "', '" + email + "', '"
+				+ notes + "');");
+	}
+
 }
