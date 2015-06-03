@@ -122,8 +122,8 @@ public class SignInValidationServlet extends HttpServlet {
         CandidateHomeServlet cHSObject = new CandidateHomeServlet();
         cHSObject.doPost(request, response);
 
-        response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-             + "/RezuMe/CandidateHomeServlet");
+        // response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
+        //     + "/RezuMe/CandidateHomeServlet");
       } else {
         session.setAttribute("loggedIn", "true");
         session.setAttribute("organizationLoggedIn", "true");
