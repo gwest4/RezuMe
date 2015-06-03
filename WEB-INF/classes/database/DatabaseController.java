@@ -368,6 +368,10 @@ public class DatabaseController {
 		executeInsertUpdate("UPDATE rzm_candidate SET skills = \'" + skills + "\' WHERE candidate_id = \'" + candidateId + "\';");
 	}
 
+	public void updateResume(String candidateEmail, String resumePath) {
+		executeInsertUpdate("INSERT INTO rzm_resume (candidate_id, path) VALUES ('" + getCandidateId(candidateEmail) + "', '" + resumePath + "');");
+	}
+
 	public boolean candidateCompletedSkills(String email) {
 		boolean candidateCompletedSkills = true;
 	

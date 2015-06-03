@@ -59,6 +59,17 @@
     <url-pattern>/CandidateSignupServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- CandidateSignupResumeServlet -->
+  <servlet>
+    <servlet-name>CandidateSignupResumeServlet</servlet-name>
+    <servlet-class>CandidateSignupResumeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CandidateSignupResumeServlet</servlet-name>
+    <url-pattern>/CandidateSignupResumeServlet</url-pattern>
+  </servlet-mapping>
+
   <!-- CandidateSignup2Servlet -->
   <servlet>
     <servlet-name>CandidateSignup2Servlet</servlet-name>
