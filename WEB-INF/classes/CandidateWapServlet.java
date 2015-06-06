@@ -103,8 +103,7 @@ public class CandidateWapServlet extends HttpServlet {
 
 				CandidateHomeServlet servletObject = new CandidateHomeServlet();
 				servletObject.doPost(request, response);
-				response.sendRedirect(UrlProvider.getInstance().getBaseUrl(request)
-						+ "/RezuMe/CandidateHomeServlet");
+				response.sendRedirect(request.getContextPath());
 			} catch (NumberFormatException e) {
 				System.out.println("WAP question not answered");
 				htmlStringBuilder.append("<div id=\"body-WAPQuiz\">"+
