@@ -26,6 +26,8 @@ public class CandidateHomeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 
+		session.setAttribute("userType", "CANDIDATE");
+
 		StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("candidate-home.css"));
 
 		htmlStringBuilder.append("<div id=\"body-text\">");

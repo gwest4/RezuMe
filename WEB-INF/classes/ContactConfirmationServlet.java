@@ -27,9 +27,13 @@ public class ContactConfirmationServlet extends HttpServlet {
 				+ "\r\n<p class=\"body-text-text\">"
 				+ "\r\n\tPlease allow the contact to receieve, view, and respond to your ping.<br>"
 				+ "<br>Also, please note that all communication from this point forward will be handled outside of RezuMe.<br>"
-				+ "\r\n\t<br>Click the button below to return to your home page.\r\n</p>"
-				+ "\r\n<form class=\"form\" action=\"CandidateHomeServlet\" method=\"post\">"
-				+ "\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Home\">"
+				+ "\r\n\t<br>Click the button below to return to your home page.\r\n</p>");
+		if (session.getAttribute("userType").equals("CANDIDATE")) {
+			htmlStringBuilder.append("\r\n<form class=\"form\" action=\"CandidateHomeServlet\" method=\"post\">");
+		} else {
+			htmlStringBuilder.append("\r\n<form class=\"form\" action=\"OrganizationHomeServlet\" method=\"post\">");
+		}
+		htmlStringBuilder.append("\r\n\t<input id=\"submit-button\" type=\"submit\" value=\"Home\">"
 				+ "\r\n</form>");
 		htmlStringBuilder.append("</div>");
 		htmlStringBuilder.append("</div>");

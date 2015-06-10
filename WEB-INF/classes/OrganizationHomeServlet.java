@@ -25,6 +25,9 @@ public class OrganizationHomeServlet extends HttpServlet {
     response.setContentType("text/html");
     HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
+
+    session.setAttribute("userType", "ORGANIZATION");
+
     HashMap<String,String> profileData = DatabaseController.getInstance().getOrganizationProfileData((String) session.getAttribute("currentUser"));
     StringBuilder htmlStringBuilder = new StringBuilder(HtmlProvider.getInstance().getLoggedInHead("organization-home.css"));
 
